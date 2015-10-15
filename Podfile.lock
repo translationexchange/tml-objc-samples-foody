@@ -1,0 +1,21 @@
+PODS:
+  - MBProgressHUD (0.9.1)
+  - MPColorTools (1.6.1)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - Tml (0.2.1):
+    - MBProgressHUD (~> 0.9)
+    - MPColorTools (~> 1.6)
+
+DEPENDENCIES:
+  - SDWebImage (~> 3.7.3)
+  - Tml (~> 0.2.1)
+
+SPEC CHECKSUMS:
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MPColorTools: a5d2a09fc44750aea0366f666aa52c80565c0764
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  Tml: 8c37e1e3acd67a540781c416b4b20445f6085e66
+
+COCOAPODS: 0.39.0
