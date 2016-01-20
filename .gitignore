@@ -6,3 +6,4 @@ Pods
 FLIGHTLOG
 .ruby-version
 .idea
+*.xcuserdatad/
