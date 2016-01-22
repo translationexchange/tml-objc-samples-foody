@@ -25,6 +25,7 @@
 		C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA321B1C52B19F001902EB /* RecipesTableViewController.m */; };
 		C4FA32281C52B1AB001902EB /* hero.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4FA32261C52B1AB001902EB /* hero.jpg */; };
 		C4FA32291C52B1AB001902EB /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C4FA32271C52B1AB001902EB /* placeholder.png */; };
+		C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		C4FA321B1C52B19F001902EB /* RecipesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesTableViewController.m; sourceTree = "<group>"; };
 		C4FA32261C52B1AB001902EB /* hero.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hero.jpg; sourceTree = "<group>"; };
 		C4FA32271C52B1AB001902EB /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		C4FA322B1C52B426001902EB /* RecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewCell.h; sourceTree = "<group>"; };
+		C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
 		E4A04C5AEA344134457647D2 /* libPods-Foody.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Foody.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -199,6 +202,7 @@
 		C4FA32051C52B19F001902EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C4FA322A1C52B2F4001902EB /* Views */,
 				C4FA32061C52B19F001902EB /* APIClient */,
 				C4FA32091C52B19F001902EB /* AppDelegate.h */,
 				C4FA320A1C52B19F001902EB /* AppDelegate.m */,
@@ -253,6 +257,15 @@
 				C4FA32271C52B1AB001902EB /* placeholder.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		C4FA322A1C52B2F4001902EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4FA322B1C52B426001902EB /* RecipeTableViewCell.h */,
+				C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +458,7 @@
 				C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */,
 				C4FA32201C52B19F001902EB /* FDirection.m in Sources */,
 				C4FA321E1C52B19F001902EB /* FBase.m in Sources */,
+				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
 				C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */,
 				C4FA32211C52B19F001902EB /* FIngredient.m in Sources */,
 				C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */,

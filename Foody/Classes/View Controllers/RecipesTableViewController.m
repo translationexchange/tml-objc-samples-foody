@@ -6,9 +6,11 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "RecipesTableViewController.h"
 #import "FRecipe.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "RecipeTableViewCell.h"
+#import "RecipesTableViewController.h"
+
+NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 
 @interface RecipesTableViewController ()
 
@@ -24,17 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.title = [self.category getValue:@"name"];
+    UITableView *tableView = self.tableView;
+    [tableView registerClass:[RecipeTableViewCell class] forCellReuseIdentifier:RecipeTableViewCellIdentifier];
     
     refreshControl = [[UIRefreshControl alloc]init];
-    [self.tableView addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [tableView addSubview:refreshControl];
+    
     [self refreshTable];
 }
 
@@ -68,16 +67,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RecipeTableViewCellIdentifier
+                                                            forIndexPath:indexPath];
     
     FRecipe *recipe = (FRecipe *) [recipes objectAtIndex:indexPath.row];
     cell.textLabel.text = [recipe getValue:@"name"];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[recipe getValue:@"image"]]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    NSURL *thumbURL = [NSURL URLWithString:[recipe getValue:@"image"]];
+    if (thumbURL != nil) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            NSData *thumbData = [NSData dataWithContentsOfURL:thumbURL];
+            if (thumbData != nil) {
+                UIImage *thumbImage = [UIImage imageWithData:thumbData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.imageView.image = thumbImage;
+                    [cell setNeedsLayout];
+                });
+            }
+        });
+    }
     
     return cell;
 }
