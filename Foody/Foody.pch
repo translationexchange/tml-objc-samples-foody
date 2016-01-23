@@ -1,0 +1,16 @@
+//
+//  Foody.pch
+//  Foody
+//
+//  Created by Pasha on 1/22/16.
+//  Copyright © 2016 Translation Exchange, Inc. All rights reserved.
+//
+
+#ifndef Foody_pch
+#define Foody_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "TMLLogger.h"
+
+#endif /* Foody_pch */

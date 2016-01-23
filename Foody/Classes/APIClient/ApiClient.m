@@ -7,7 +7,6 @@
 //
 
 #import "ApiClient.h"
-#import "Logger.h"
 
 @implementation ApiClient
 
@@ -55,13 +54,13 @@ static ApiClient *sharedInstance = nil;
     NSObject *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
     if (error) {
-        Debug(@"Error trace: %@", error);
+        TMLDebug(@"Error trace: %@", error);
         return nil;
     }
     
     NSDictionary *responseData = (NSDictionary *) responseObject;
     if ([responseData valueForKey:@"error"] != nil) {
-        Debug(@"Error trace: %@", [responseData valueForKey:@"error"]);
+        TMLDebug(@"Error trace: %@", [responseData valueForKey:@"error"]);
         return nil;
     }
     
@@ -74,7 +73,7 @@ static ApiClient *sharedInstance = nil;
                          success: (void (^)(NSDictionary *responseObject)) success
                          failure: (void (^)(NSError *error)) failure {
     if (error) {
-        Debug(@"Error: %@", error);
+        TMLDebug(@"Error: %@", error);
         failure(error);
         return;
     }
@@ -108,7 +107,7 @@ static ApiClient *sharedInstance = nil;
     
     NSString *fullPathWithQuery = [NSString stringWithFormat:@"%@?%@", [self apiFullPath: path], [self urlEncodedStringFromParams: [self apiParameters: params]]];
 
-    Debug(@"GET %@", fullPathWithQuery);
+    TMLDebug(@"GET %@", fullPathWithQuery);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fullPathWithQuery]];
     [self request:request options:options success:success failure:failure];
@@ -120,7 +119,7 @@ static ApiClient *sharedInstance = nil;
       success: (void (^)(NSDictionary *responseObject)) success
       failure: (void (^)(NSError *error)) failure {
     
-    Debug(@"POST %@", [self apiFullPath: path]);
+    TMLDebug(@"POST %@", [self apiFullPath: path]);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self apiFullPath: path]]];
     [request setHTTPMethod:@"POST"];
@@ -137,7 +136,7 @@ static ApiClient *sharedInstance = nil;
 
     NSString *fullPathWithQuery = [NSString stringWithFormat:@"%@?%@", [self apiFullPath: path], [self urlEncodedStringFromParams: [self apiParameters: params]]];
 
-    Debug(@"DELETE %@", fullPathWithQuery);
+    TMLDebug(@"DELETE %@", fullPathWithQuery);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:fullPathWithQuery]];
     [request setHTTPMethod:@"DELETE"];
@@ -151,7 +150,7 @@ static ApiClient *sharedInstance = nil;
         success: (void (^)(NSDictionary *responseObject)) success
         failure: (void (^)(NSError *error)) failure {
     
-    Debug(@"PUT %@", [self apiFullPath: path]);
+    TMLDebug(@"PUT %@", [self apiFullPath: path]);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self apiFullPath: path]]];
     [request setHTTPMethod:@"PUT"];

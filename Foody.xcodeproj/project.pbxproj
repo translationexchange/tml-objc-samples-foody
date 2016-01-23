@@ -64,7 +64,6 @@
 		C4FA32081C52B19F001902EB /* ApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		C4FA32091C52B19F001902EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C4FA320A1C52B19F001902EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C4FA320B1C52B19F001902EB /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		C4FA320D1C52B19F001902EB /* FBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBase.h; sourceTree = "<group>"; };
 		C4FA320E1C52B19F001902EB /* FBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBase.m; sourceTree = "<group>"; };
 		C4FA320F1C52B19F001902EB /* FCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCategory.h; sourceTree = "<group>"; };
@@ -83,6 +82,8 @@
 		C4FA32271C52B1AB001902EB /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		C4FA322B1C52B426001902EB /* RecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewCell.h; sourceTree = "<group>"; };
 		C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
+		C4FA322E1C530710001902EB /* TMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMLLogger.h; sourceTree = "<group>"; };
+		C4FA322F1C530764001902EB /* Foody.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foody.pch; sourceTree = "<group>"; };
 		E4A04C5AEA344134457647D2 /* libPods-Foody.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Foody.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -157,7 +158,6 @@
 				C4FA32251C52B1AB001902EB /* Assets */,
 				C097436A1BCDA2C90068E216 /* Assets.xcassets */,
 				C4FA32051C52B19F001902EB /* Classes */,
-				C097436F1BCDA2C90068E216 /* Info.plist */,
 				C0D8A1D01BCF8CAD005C49EE /* Storyboards */,
 				C097435E1BCDA2C90068E216 /* Supporting Files */,
 			);
@@ -167,7 +167,9 @@
 		C097435E1BCDA2C90068E216 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C097436F1BCDA2C90068E216 /* Info.plist */,
 				C097435F1BCDA2C90068E216 /* main.m */,
+				C4FA322F1C530764001902EB /* Foody.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -202,11 +204,11 @@
 		C4FA32051C52B19F001902EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C4FA322E1C530710001902EB /* TMLLogger.h */,
 				C4FA322A1C52B2F4001902EB /* Views */,
 				C4FA32061C52B19F001902EB /* APIClient */,
 				C4FA32091C52B19F001902EB /* AppDelegate.h */,
 				C4FA320A1C52B19F001902EB /* AppDelegate.m */,
-				C4FA320B1C52B19F001902EB /* Logger.h */,
 				C4FA320C1C52B19F001902EB /* Models */,
 				C4FA32171C52B19F001902EB /* View Controllers */,
 			);
@@ -603,6 +605,8 @@
 			baseConfigurationReference = 7E24106E7B1C7798D739AAEE /* Pods-Foody.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Foody/Foody.pch;
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translationexchange.Foody;
@@ -615,6 +619,8 @@
 			baseConfigurationReference = B75D8F26DD1E1CD319EF9FF4 /* Pods-Foody.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Foody/Foody.pch;
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translationexchange.Foody;

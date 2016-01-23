@@ -6,7 +6,6 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "FCategory.h"
 
 @interface RecipesTableViewController : UITableViewController
