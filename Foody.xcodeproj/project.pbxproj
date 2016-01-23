@@ -82,8 +82,8 @@
 		C4FA32271C52B1AB001902EB /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		C4FA322B1C52B426001902EB /* RecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewCell.h; sourceTree = "<group>"; };
 		C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
-		C4FA322E1C530710001902EB /* TMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMLLogger.h; sourceTree = "<group>"; };
 		C4FA322F1C530764001902EB /* Foody.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foody.pch; sourceTree = "<group>"; };
+		C4FA32301C530C94001902EB /* libTMLKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTMLKit.a; path = "Pods/../build/Debug-iphoneos/libTMLKit.a"; sourceTree = "<group>"; };
 		E4A04C5AEA344134457647D2 /* libPods-Foody.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Foody.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,6 +116,7 @@
 		239DF09B3B3B9E71EE7632D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4FA32301C530C94001902EB /* libTMLKit.a */,
 				E4A04C5AEA344134457647D2 /* libPods-Foody.a */,
 			);
 			name = Frameworks;
@@ -204,7 +205,6 @@
 		C4FA32051C52B19F001902EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C4FA322E1C530710001902EB /* TMLLogger.h */,
 				C4FA322A1C52B2F4001902EB /* Views */,
 				C4FA32061C52B19F001902EB /* APIClient */,
 				C4FA32091C52B19F001902EB /* AppDelegate.h */,
@@ -609,6 +609,10 @@
 				GCC_PREFIX_HEADER = Foody/Foody.pch;
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.translationexchange.Foody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -623,6 +627,10 @@
 				GCC_PREFIX_HEADER = Foody/Foody.pch;
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.translationexchange.Foody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
