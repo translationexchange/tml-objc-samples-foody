@@ -8,62 +8,60 @@
 
 #import "FCategory.h"
 #import "FRecipe.h"
-#import "ApiClient.h"
+#import "APIClient.h"
+#import "AppDelegate.h"
 
 @implementation FCategory
 
-+ (void) findAll: (NSDictionary *) params
-         success: (void (^)(NSArray *categories)) success
-         failure: (void (^)(NSError *error)) failure {
-    
-    [[ApiClient sharedInstance] get: @"categories"
-                             params: params options:@{}
-                            success: ^(NSDictionary *responseObject) {
-        NSArray *results = (NSArray *) [responseObject objectForKey:@"results"];
-        NSMutableArray *categories = [NSMutableArray array];
-        for (NSDictionary *cat in results) {
-            FCategory *category = [[FCategory alloc] initWithAttributes: cat];
-            [categories addObject: category];
-        }
-        success(categories);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+- (id)copyWithZone:(NSZone *)zone {
+    FCategory *copy = [[FCategory alloc] init];
+    copy.categoryID = self.categoryID;
+    copy.key = self.key;
+    copy.name = self.name;
+    copy.locale = self.locale;
+    copy.featuredIndex = self.featuredIndex;
+    return copy;
 }
 
-+ (void) find: (NSString *) key
-      success: (void (^)(FCategory *category)) success
-      failure: (void (^)(NSError *error)) failure {
-
-    [[ApiClient sharedInstance] get: [NSString stringWithFormat:@"categories/%@", key]
-                             params: @{} options:@{}
-                            success: ^(NSDictionary *responseObject) {
-        if (responseObject == nil)
-            failure([NSError errorWithDomain:@"Not found" code:404 userInfo:nil]);
-        else
-            success([[FCategory alloc] initWithAttributes: responseObject]);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeInteger:self.categoryID forKey:@"id"];
+    [aCoder encodeObject:self.key forKey:@"key"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.locale forKey:@"locale"];
+    [aCoder encodeInteger:self.featuredIndex forKey:@"featured_index"];
 }
 
-- (void) getRecipes: (NSDictionary *) params
-             success: (void (^)(NSArray *recipes)) success
-             failure: (void (^)(NSError *error)) failure {
-    
-    [[ApiClient sharedInstance] get: [NSString stringWithFormat:@"categories/%@/recipes", [self getValue:@"id"]]
-                             params: params options:@{}
-                            success: ^(NSDictionary *responseObject) {
-        NSArray *results = (NSArray *) [responseObject objectForKey:@"results"];
-        NSMutableArray *recipes = [NSMutableArray array];
-        for (NSDictionary *rec in results) {
-            [recipes addObject: [[FRecipe alloc] initWithAttributes: rec]];
-        }
-        success(recipes);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+- (void)decodeWithCoder:(NSCoder *)aDecoder {
+    self.categoryID = [aDecoder decodeIntegerForKey:@"id"];
+    self.key = [aDecoder decodeObjectForKey:@"key"];
+    self.name = [aDecoder decodeObjectForKey:@"name"];
+    self.locale = [aDecoder decodeObjectForKey:@"locale"];
+    self.featuredIndex = [aDecoder decodeIntegerForKey:@"featured_index"];
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    if ([object isKindOfClass:[self class]] == NO) {
+        return NO;
+    }
+    return [self isEqualToCategory:(FCategory *)object];
+}
+
+- (BOOL)isEqualToCategory:(FCategory *)category {
+    return (self.categoryID == category.categoryID
+            && (self.key == category.key
+                || [self.key isEqualToString:category.key])
+            && (self.locale == category.locale
+                || [self.locale isEqualToString:category.locale])
+            && (self.name == category.name
+                || [self.name isEqualToString:category.name])
+            && self.featuredIndex == category.featuredIndex);
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@:%li:%@ %p>", NSStringFromClass(self.class), self.categoryID, self.name, self];
+}
 
 @end

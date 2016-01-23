@@ -6,21 +6,16 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FBase.h"
+#import <TMLKit/TMLModel.h>
 
-@interface FCategory : FBase
+@interface FCategory : TMLModel
 
-+ (void) findAll: (NSDictionary *)params
-         success: (void (^)(NSArray *categories)) success
-         failure: (void (^)(NSError *error)) failure;
+@property (assign, nonatomic) NSInteger categoryID;
+@property (strong, nonatomic) NSString *key;
+@property (strong, nonatomic) NSString *locale;
+@property (strong, nonatomic) NSString *name;
+@property (assign, nonatomic) NSInteger featuredIndex;
 
-+ (void) find: (NSString *)key
-      success: (void (^)(FCategory *category)) success
-      failure: (void (^)(NSError *error)) failure;
-
-- (void) getRecipes: (NSDictionary *)params
-            success: (void (^)(NSArray *recipes)) success
-            failure: (void (^)(NSError *error)) failure;
+- (BOOL)isEqualToCategory:(FCategory *)category;
 
 @end

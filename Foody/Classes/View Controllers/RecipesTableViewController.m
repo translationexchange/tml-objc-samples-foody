@@ -9,6 +9,9 @@
 #import "FRecipe.h"
 #import "RecipeTableViewCell.h"
 #import "RecipesTableViewController.h"
+#import "AppDelegate.h"
+#import "APIClient.h"
+#import "FCategory.h"
 
 NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 
@@ -26,7 +29,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [self.category getValue:@"name"];
+    self.title = self.category.name;
     UITableView *tableView = self.tableView;
     [tableView registerClass:[RecipeTableViewCell class] forCellReuseIdentifier:RecipeTableViewCellIdentifier];
     
@@ -39,15 +42,15 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 
 - (void)refreshTable {
     if (category) {
-        [category getRecipes: @{} success:^(NSArray *fetchedRecipes) {
-            self.recipes = fetchedRecipes;
-            [refreshControl endRefreshing];
-            [self.tableView reloadData];
-        } failure:^(NSError *error) {
-            self.recipes = @[];
-            [refreshControl endRefreshing];
-            [self.tableView reloadData];
-        }];
+        [AppAPIClient recipesForCategoryWithID:category.categoryID
+                                    parameters:nil
+                                    completion:^(NSArray *newRecipes, NSError *error) {
+                                        if (error == nil) {
+                                            self.recipes = newRecipes;
+                                            [refreshControl endRefreshing];
+                                            [self.tableView reloadData];
+                                        }
+                                    }];
     }
 }
 
@@ -71,8 +74,8 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
                                                             forIndexPath:indexPath];
     
     FRecipe *recipe = (FRecipe *) [recipes objectAtIndex:indexPath.row];
-    cell.textLabel.text = [recipe getValue:@"name"];
-    NSURL *thumbURL = [NSURL URLWithString:[recipe getValue:@"image"]];
+    cell.textLabel.text = recipe.name;
+    NSURL *thumbURL = [NSURL URLWithString:recipe.imagePath];
     if (thumbURL != nil) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
             NSData *thumbData = [NSData dataWithContentsOfURL:thumbURL];

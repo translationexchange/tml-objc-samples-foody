@@ -6,9 +6,8 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FBase.h"
+#import <TMLKit/TMLModel.h>
 
-@interface FIngredient : FBase
+@interface FIngredient : TMLModel
 
 @end

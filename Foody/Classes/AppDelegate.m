@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "APIClient.h"
 
 @interface AppDelegate ()
-
+@property (strong, readwrite, nonatomic) APIClient *apiClient;
 @end
 
 @implementation AppDelegate
@@ -17,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
     return YES;
 }
 

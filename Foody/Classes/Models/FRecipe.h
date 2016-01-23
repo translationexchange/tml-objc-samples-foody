@@ -6,21 +6,19 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FBase.h"
+#import <TMLKit/TMLModel.h>
 
-@interface FRecipe : FBase
+@interface FRecipe : TMLModel
 
-+ (void) find: (NSString *)key
-      success: (void (^)(FRecipe *recipe)) success
-      failure: (void (^)(NSError *error)) failure;
+@property (assign, nonatomic) NSInteger recipeID;
+@property (assign, nonatomic) NSInteger featuredIndex;
+@property (strong, nonatomic) NSString *key;
+@property (strong, nonatomic) NSString *imagePath;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *locale;
+@property (strong, nonatomic) NSString *preparationDescription;
+@property (strong, nonatomic) NSString *recipeDescription;
 
-- (void) getDirections: (NSDictionary *)params
-               success: (void (^)(NSArray *directions)) success
-               failure: (void (^)(NSError *error)) failure;
-
-- (void) getIngredients: (NSDictionary *)params
-                success: (void (^)(NSArray *ingredients)) success
-                failure: (void (^)(NSError *error)) failure;
+- (BOOL)isEqualToRecipe:(FRecipe *)recipe;
 
 @end
