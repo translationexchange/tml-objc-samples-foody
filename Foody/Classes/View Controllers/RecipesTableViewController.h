@@ -11,5 +11,7 @@
 @interface RecipesTableViewController : UITableViewController
 
 @property(nonatomic, strong) FCategory *category;
+@property(assign, nonatomic) NSInteger selectedIndex;
+@property(readonly, nonatomic, strong) NSArray *recipes;
 
 @end

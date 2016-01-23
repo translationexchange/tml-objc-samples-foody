@@ -52,6 +52,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="8PU-mi-YOm" kind="show" identifier="SelectRecipe" id="nQ3-gp-7Ea"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -64,6 +67,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bz2-Tu-tLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1398" y="633"/>
+        </scene>
+        <!--Recipe View Controller-->
+        <scene sceneID="HUf-g0-naB">
+            <objects>
+                <viewController id="8PU-mi-YOm" customClass="RecipeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cRW-Vb-NxD"/>
+                        <viewControllerLayoutGuide type="bottom" id="4pS-rq-uwT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yit-wU-hQv" customClass="RecipeView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-m4-TaO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dm2-05-5PZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUw-rl-Hoi">
+                                        <rect key="frame" x="0.0" y="351" width="600" height="47"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.33636853448275861" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmo-3N-lLZ">
+                                        <rect key="frame" x="0.0" y="356" width="600" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="imageView" destination="dm2-05-5PZ" id="hUj-Om-Iph"/>
+                            <outlet property="nameLabel" destination="mmo-3N-lLZ" id="wsc-po-Qha"/>
+                            <outlet property="nameShadeView" destination="CUw-rl-Hoi" id="rEY-X4-XvI"/>
+                            <outlet property="scrollView" destination="xIu-m4-TaO" id="ydL-ht-4hv"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dK-DP-0RF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2064" y="633"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2jU-RO-3sI">

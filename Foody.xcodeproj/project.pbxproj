@@ -14,6 +14,8 @@
 		C097436E1BCDA2C90068E216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C097436C1BCDA2C90068E216 /* LaunchScreen.storyboard */; };
 		C09743791BCDA2C90068E216 /* FoodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743781BCDA2C90068E216 /* FoodyTests.m */; };
 		C09743841BCDA2C90068E216 /* FoodyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743831BCDA2C90068E216 /* FoodyUITests.m */; };
+		C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8CE61C5341EE00FACF81 /* RecipeViewController.m */; };
+		C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8CE91C534C9700FACF81 /* RecipeView.m */; };
 		C4FA321C1C52B19F001902EB /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32081C52B19F001902EB /* APIClient.m */; };
 		C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320A1C52B19F001902EB /* AppDelegate.m */; };
 		C4FA321E1C52B19F001902EB /* FBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320E1C52B19F001902EB /* FBase.m */; };
@@ -60,6 +62,10 @@
 		C097437F1BCDA2C90068E216 /* FoodyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09743831BCDA2C90068E216 /* FoodyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodyUITests.m; sourceTree = "<group>"; };
 		C09743851BCDA2C90068E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4CC8CE51C5341EE00FACF81 /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
+		C4CC8CE61C5341EE00FACF81 /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
+		C4CC8CE81C534C9700FACF81 /* RecipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeView.h; sourceTree = "<group>"; };
+		C4CC8CE91C534C9700FACF81 /* RecipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeView.m; sourceTree = "<group>"; };
 		C4FA32071C52B19F001902EB /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		C4FA32081C52B19F001902EB /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		C4FA32091C52B19F001902EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -248,6 +254,8 @@
 				C4FA32191C52B19F001902EB /* CategoriesTableViewController.m */,
 				C4FA321A1C52B19F001902EB /* RecipesTableViewController.h */,
 				C4FA321B1C52B19F001902EB /* RecipesTableViewController.m */,
+				C4CC8CE51C5341EE00FACF81 /* RecipeViewController.h */,
+				C4CC8CE61C5341EE00FACF81 /* RecipeViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -266,6 +274,8 @@
 			children = (
 				C4FA322B1C52B426001902EB /* RecipeTableViewCell.h */,
 				C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */,
+				C4CC8CE81C534C9700FACF81 /* RecipeView.h */,
+				C4CC8CE91C534C9700FACF81 /* RecipeView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -461,6 +471,8 @@
 				C4FA32201C52B19F001902EB /* FDirection.m in Sources */,
 				C4FA321E1C52B19F001902EB /* FBase.m in Sources */,
 				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
+				C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */,
+				C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */,
 				C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */,
 				C4FA32211C52B19F001902EB /* FIngredient.m in Sources */,
 				C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */,

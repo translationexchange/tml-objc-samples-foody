@@ -6,25 +6,21 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
+#import "APIClient.h"
+#import "AppDelegate.h"
+#import "FCategory.h"
 #import "FRecipe.h"
 #import "RecipeTableViewCell.h"
+#import "RecipeViewController.h"
 #import "RecipesTableViewController.h"
-#import "AppDelegate.h"
-#import "APIClient.h"
-#import "FCategory.h"
 
 NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 
-@interface RecipesTableViewController ()
-
-@property(nonatomic, strong) NSArray *recipes;
-@property(nonatomic, strong) UIRefreshControl *refreshControl;
-
+@interface RecipesTableViewController()
+@property(readwrite, nonatomic, strong) NSArray *recipes;
 @end
 
 @implementation RecipesTableViewController
-
-@synthesize refreshControl, category, recipes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,21 +29,22 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     UITableView *tableView = self.tableView;
     [tableView registerClass:[RecipeTableViewCell class] forCellReuseIdentifier:RecipeTableViewCellIdentifier];
     
-    refreshControl = [[UIRefreshControl alloc]init];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     [tableView addSubview:refreshControl];
+    self.refreshControl = refreshControl;
     
     [self refreshTable];
 }
 
 - (void)refreshTable {
-    if (category) {
-        [AppAPIClient recipesForCategoryWithID:category.categoryID
+    if (_category) {
+        [AppAPIClient recipesForCategoryWithID:_category.categoryID
                                     parameters:nil
                                     completion:^(NSArray *newRecipes, NSError *error) {
                                         if (error == nil) {
                                             self.recipes = newRecipes;
-                                            [refreshControl endRefreshing];
+                                            [self.refreshControl endRefreshing];
                                             [self.tableView reloadData];
                                         }
                                     }];
@@ -61,14 +58,14 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [recipes count];
+    return [self.recipes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RecipeTableViewCellIdentifier
                                                             forIndexPath:indexPath];
     
-    FRecipe *recipe = (FRecipe *) [recipes objectAtIndex:indexPath.row];
+    FRecipe *recipe = (FRecipe *) [self.recipes objectAtIndex:indexPath.row];
     cell.textLabel.text = recipe.name;
     NSURL *thumbURL = [NSURL URLWithString:recipe.imagePath];
     if (thumbURL != nil) {
@@ -85,6 +82,61 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"SelectRecipe" sender:self];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndex = NSNotFound;
+}
+
+#pragma mark - Presenting Recipe
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSInteger index = self.selectedIndex;
+    if (index == NSNotFound) {
+        return;
+    }
+    
+    NSArray *allRecipes = self.recipes;
+    FRecipe *recipe = nil;
+    NSInteger row = index;
+    if (allRecipes.count > row) {
+        recipe = [allRecipes objectAtIndex:row];
+    }
+    
+    if (recipe == nil) {
+        return;
+    }
+    
+    RecipeViewController *viewController = (RecipeViewController *)[segue destinationViewController];
+    viewController.recipe = recipe;
+}
+- (void)showRecipe:(FRecipe *)recipe {
+    UINavigationController *recipeViewController = nil;
+    if (self.navigationController != nil) {
+        UIViewController *presenter = self.navigationController.topViewController;
+        if (presenter.presentedViewController != nil) {
+            [presenter dismissViewControllerAnimated:YES completion:^{
+                [self.navigationController pushViewController:recipeViewController animated:YES];
+            }];
+        }
+        else {
+            [self.navigationController pushViewController:recipeViewController animated:YES];
+        }
+    }
+    else {
+        if (self.presentedViewController != nil) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self presentViewController:recipeViewController animated:YES completion:nil];
+            }];
+        }
+        else {
+            [self presentViewController:recipeViewController animated:YES completion:nil];
+        }
+    }
 }
 
 @end
