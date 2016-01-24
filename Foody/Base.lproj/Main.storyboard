@@ -120,10 +120,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.031189671660000001" green="0.0051649586109999996" blue="0.1193108974" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.96577785329999999" green="0.96577785329999999" blue="0.96577785329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.031189671660000001" green="0.0051649586109999996" blue="0.1193108974" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.96577785329999999" green="0.96577785329999999" blue="0.96577785329999999" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
