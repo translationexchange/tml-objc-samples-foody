@@ -6,14 +6,14 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "FRecipe.h"
-#import "FDirection.h"
-#import "FIngredient.h"
+#import "Recipe.h"
+#import "RecipeDirection.h"
+#import "RecipeIngredient.h"
 
-@implementation FRecipe
+@implementation Recipe
 
 - (id)copyWithZone:(NSZone *)zone {
-    FRecipe *copy = [[FRecipe alloc] init];
+    Recipe *copy = [[Recipe alloc] init];
     copy.recipeID = self.recipeID;
     copy.featuredIndex = self.featuredIndex;
     copy.key = self.key;
@@ -51,13 +51,13 @@
     if (self == object) {
         return YES;
     }
-    if ([self isKindOfClass:[FRecipe class]] == NO) {
+    if ([self isKindOfClass:[Recipe class]] == NO) {
         return NO;
     }
-    return [self isEqualToRecipe:(FRecipe *)object];
+    return [self isEqualToRecipe:(Recipe *)object];
 }
 
-- (BOOL)isEqualToRecipe:(FRecipe *)recipe {
+- (BOOL)isEqualToRecipe:(Recipe *)recipe {
     return (self.recipeID == recipe.recipeID
             && self.featuredIndex == recipe.featuredIndex
             && (self.key == recipe.key

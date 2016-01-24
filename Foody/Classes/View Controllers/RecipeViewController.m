@@ -7,7 +7,7 @@
 //
 
 #import "RecipeViewController.h"
-#import "FRecipe.h"
+#import "Recipe.h"
 #import "RecipeView.h"
 
 @interface RecipeViewController ()
@@ -25,7 +25,7 @@
     return (RecipeView *)self.view;
 }
 
-- (void)setRecipe:(FRecipe *)recipe {
+- (void)setRecipe:(Recipe *)recipe {
     if (_recipe == recipe
         || [_recipe isEqualToRecipe:recipe] == YES) {
         return;
@@ -37,7 +37,7 @@
 }
 
 - (void)update {
-    FRecipe *recipe = self.recipe;
+    Recipe *recipe = self.recipe;
     RecipeView *view = self.recipeView;
     view.nameLabel.text = recipe.name;
     

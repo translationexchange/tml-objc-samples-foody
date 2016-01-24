@@ -9,7 +9,7 @@
 // piggy backing off of TMLBasicAPIClient
 #import <TMLKit/TMLBasicAPIClient.h>
 
-@class FCategory, FRecipe;
+@class RecipeCategory, Recipe;
 
 @interface APIClient : TMLBasicAPIClient
 
@@ -18,7 +18,7 @@
 
 - (void)categoryWithID:(NSInteger)categoryID
             parameters:(NSDictionary *)parameters
-            completion:(void(^)(FCategory *category, NSError *error))completion;
+            completion:(void(^)(RecipeCategory *category, NSError *error))completion;
 
 - (void)recipesForCategoryWithID:(NSInteger)categoryID
                       parameters:(NSDictionary *)parameters
@@ -26,7 +26,7 @@
 
 - (void)recipeWithID:(NSInteger)recipeID
           parameters:(NSDictionary *)parameters
-          completion:(void(^)(FRecipe *recipe, NSError *error))completion;
+          completion:(void(^)(Recipe *recipe, NSError *error))completion;
 
 - (void)directionsForRecipeWithID:(NSInteger)recipeID
                        parameters:(NSDictionary *)parameters

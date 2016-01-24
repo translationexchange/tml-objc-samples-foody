@@ -6,12 +6,12 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "FDirection.h"
+#import "RecipeDirection.h"
 
-@implementation FDirection
+@implementation RecipeDirection
 
 - (id)copyWithZone:(NSZone *)zone {
-    FDirection *copy = [[FDirection alloc] init];
+    RecipeDirection *copy = [[RecipeDirection alloc] init];
     copy.directionID = self.directionID;
     copy.index = self.index;
     copy.directionDescription = self.directionDescription;
@@ -34,13 +34,13 @@
     if (self == object) {
         return YES;
     }
-    if ([self isKindOfClass:[FDirection class]] == NO) {
+    if ([self isKindOfClass:[RecipeDirection class]] == NO) {
         return NO;
     }
-    return [self isEqualToDirection:(FDirection *)object];
+    return [self isEqualToDirection:(RecipeDirection *)object];
 }
 
--(BOOL)isEqualToDirection:(FDirection *)direction {
+-(BOOL)isEqualToDirection:(RecipeDirection *)direction {
     return (self.directionID == direction.directionID
             && self.index == direction.index
             && (self.directionDescription == direction.directionDescription

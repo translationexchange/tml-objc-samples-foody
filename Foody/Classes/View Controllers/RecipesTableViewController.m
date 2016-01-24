@@ -8,8 +8,8 @@
 
 #import "APIClient.h"
 #import "AppDelegate.h"
-#import "FCategory.h"
-#import "FRecipe.h"
+#import "RecipeCategory.h"
+#import "Recipe.h"
 #import "RecipeTableViewCell.h"
 #import "RecipeViewController.h"
 #import "RecipesTableViewController.h"
@@ -65,7 +65,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RecipeTableViewCellIdentifier
                                                             forIndexPath:indexPath];
     
-    FRecipe *recipe = (FRecipe *) [self.recipes objectAtIndex:indexPath.row];
+    Recipe *recipe = (Recipe *) [self.recipes objectAtIndex:indexPath.row];
     cell.textLabel.text = recipe.name;
     NSURL *thumbURL = [NSURL URLWithString:recipe.imagePath];
     if (thumbURL != nil) {
@@ -101,7 +101,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     }
     
     NSArray *allRecipes = self.recipes;
-    FRecipe *recipe = nil;
+    Recipe *recipe = nil;
     NSInteger row = index;
     if (allRecipes.count > row) {
         recipe = [allRecipes objectAtIndex:row];
@@ -114,7 +114,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     RecipeViewController *viewController = (RecipeViewController *)[segue destinationViewController];
     viewController.recipe = recipe;
 }
-- (void)showRecipe:(FRecipe *)recipe {
+- (void)showRecipe:(Recipe *)recipe {
     UINavigationController *recipeViewController = nil;
     if (self.navigationController != nil) {
         UIViewController *presenter = self.navigationController.topViewController;

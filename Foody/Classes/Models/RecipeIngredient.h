@@ -8,7 +8,7 @@
 
 #import <TMLKit/TMLModel.h>
 
-@interface FIngredient : TMLModel
+@interface RecipeIngredient : TMLModel
 
 @property (assign, nonatomic) NSInteger ingredientID;
 @property (assign, nonatomic) NSInteger index;

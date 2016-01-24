@@ -8,7 +8,7 @@
 
 #import <TMLKit/TMLModel.h>
 
-@interface FRecipe : TMLModel
+@interface Recipe : TMLModel
 
 @property (assign, nonatomic) NSInteger recipeID;
 @property (assign, nonatomic) NSInteger featuredIndex;
@@ -19,6 +19,6 @@
 @property (strong, nonatomic) NSString *preparationDescription;
 @property (strong, nonatomic) NSString *recipeDescription;
 
-- (BOOL)isEqualToRecipe:(FRecipe *)recipe;
+- (BOOL)isEqualToRecipe:(Recipe *)recipe;
 
 @end

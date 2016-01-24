@@ -6,11 +6,11 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "FCategory.h"
+#import "RecipeCategory.h"
 
 @interface RecipesTableViewController : UITableViewController
 
-@property(nonatomic, strong) FCategory *category;
+@property(nonatomic, strong) RecipeCategory *category;
 @property(assign, nonatomic) NSInteger selectedIndex;
 @property(readonly, nonatomic, strong) NSArray *recipes;
 

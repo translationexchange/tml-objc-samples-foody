@@ -7,10 +7,10 @@
 //
 
 #import "APIClient.h"
-#import "FCategory.h"
-#import "FDirection.h"
-#import "FRecipe.h"
-#import "FIngredient.h"
+#import "RecipeCategory.h"
+#import "RecipeDirection.h"
+#import "Recipe.h"
+#import "RecipeIngredient.h"
 #import <TMLKit/TMLAPISerializer.h>
 
 @implementation APIClient
@@ -24,7 +24,7 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
     NSArray *categories = nil;
     if ([apiResponse isSuccessfulResponse] == YES) {
         NSArray *results = (NSArray *)[apiResponse results];
-        categories = [TMLAPISerializer materializeObject:results withClass:[FCategory class]];
+        categories = [TMLAPISerializer materializeObject:results withClass:[RecipeCategory class]];
     }
     if (completion != nil) {
         completion(categories, error);
@@ -34,15 +34,15 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
 
 - (void)categoryWithID:(NSInteger)categoryID
             parameters:(NSDictionary *)parameters
-            completion:(void (^)(FCategory *, NSError *))completion
+            completion:(void (^)(RecipeCategory *, NSError *))completion
 {
     NSString *path = [NSString stringWithFormat:@"categories/%li", categoryID];
     [self get:path
    parameters:nil
 completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError *error) {
-    FCategory *category = nil;
+    RecipeCategory *category = nil;
     if ([apiResponse isSuccessfulResponse] == YES) {
-        category = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[FCategory class]];
+        category = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[RecipeCategory class]];
     }
     if (completion != nil) {
         completion(category, error);
@@ -60,7 +60,7 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
 completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError *error) {
     NSArray *recipes = nil;
     if ([apiResponse isSuccessfulResponse] == YES) {
-        recipes = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[FRecipe class]];
+        recipes = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[Recipe class]];
     }
     if (completion != nil) {
         completion(recipes, error);
@@ -70,16 +70,16 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
 
 - (void)recipeWithID:(NSInteger)recipeID
           parameters:(NSDictionary *)parameters
-          completion:(void (^)(FRecipe *, NSError *))completion
+          completion:(void (^)(Recipe *, NSError *))completion
 {
     NSString *path = [NSString stringWithFormat:@"recipes/%li", recipeID];
     [self get:path
    parameters:parameters
 completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError *error) {
-    FRecipe *recipe = nil;
+    Recipe *recipe = nil;
     if ([apiResponse isSuccessfulResponse] == YES) {
         NSArray *results = (NSArray *)[apiResponse results];
-        recipe = [TMLAPISerializer materializeObject:results withClass:[FRecipe class]];
+        recipe = [TMLAPISerializer materializeObject:results withClass:[Recipe class]];
     }
     if (completion != nil) {
         completion(recipe, error);
@@ -97,7 +97,7 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
 completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError *error) {
     NSArray *directions;
     if ([apiResponse isSuccessfulResponse] == YES) {
-        directions = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[FDirection class]];
+        directions = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[RecipeDirection class]];
     }
     if (completion != nil) {
         completion(directions, error);
@@ -115,7 +115,7 @@ completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError 
 completionBlock:^(TMLAPIResponse *apiResponse, NSURLResponse *response, NSError *error) {
     NSArray *ingredients;
     if ([apiResponse isSuccessfulResponse] == YES) {
-        ingredients = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[FIngredient class]];
+        ingredients = [TMLAPISerializer materializeObject:[apiResponse results] withClass:[RecipeIngredient class]];
     }
     if (completion != nil) {
         completion(ingredients, error);

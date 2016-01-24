@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CategoriesTableViewController.h"
-#import "FCategory.h"
+#import "RecipeCategory.h"
 #import "RecipesTableViewController.h"
 #import "APIClient.h"
 
@@ -16,7 +16,7 @@
 
 @property(nonatomic, strong) NSArray *categories;
 @property(nonatomic, strong) UIRefreshControl *refreshControl;
-@property(nonatomic, strong) FCategory *category;
+@property(nonatomic, strong) RecipeCategory *category;
 
 @end
 
@@ -67,7 +67,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
    
-    FCategory *aCategory = (FCategory *) [categories objectAtIndex:indexPath.row];
+    RecipeCategory *aCategory = (RecipeCategory *) [categories objectAtIndex:indexPath.row];
     cell.textLabel.text = aCategory.name;
     
     return cell;

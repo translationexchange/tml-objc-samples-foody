@@ -8,7 +8,7 @@
 
 #import <TMLKit/TMLModel.h>
 
-@interface FDirection : TMLModel
+@interface RecipeDirection : TMLModel
 
 @property (assign, nonatomic) NSInteger directionID;
 @property (assign, nonatomic) NSInteger index;

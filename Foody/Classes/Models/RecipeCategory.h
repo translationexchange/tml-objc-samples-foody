@@ -8,7 +8,7 @@
 
 #import <TMLKit/TMLModel.h>
 
-@interface FCategory : TMLModel
+@interface RecipeCategory : TMLModel
 
 @property (assign, nonatomic) NSInteger categoryID;
 @property (strong, nonatomic) NSString *key;
@@ -16,6 +16,6 @@
 @property (strong, nonatomic) NSString *name;
 @property (assign, nonatomic) NSInteger featuredIndex;
 
-- (BOOL)isEqualToCategory:(FCategory *)category;
+- (BOOL)isEqualToCategory:(RecipeCategory *)category;
 
 @end

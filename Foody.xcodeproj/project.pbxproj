@@ -24,10 +24,10 @@
 		C4CC8D001C54891E00FACF81 /* SplashImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4CC8CFF1C54891E00FACF81 /* SplashImage.jpg */; };
 		C4FA321C1C52B19F001902EB /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32081C52B19F001902EB /* APIClient.m */; };
 		C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320A1C52B19F001902EB /* AppDelegate.m */; };
-		C4FA321F1C52B19F001902EB /* FCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32101C52B19F001902EB /* FCategory.m */; };
-		C4FA32201C52B19F001902EB /* FDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32121C52B19F001902EB /* FDirection.m */; };
-		C4FA32211C52B19F001902EB /* FIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32141C52B19F001902EB /* FIngredient.m */; };
-		C4FA32221C52B19F001902EB /* FRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32161C52B19F001902EB /* FRecipe.m */; };
+		C4FA321F1C52B19F001902EB /* RecipeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32101C52B19F001902EB /* RecipeCategory.m */; };
+		C4FA32201C52B19F001902EB /* RecipeDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32121C52B19F001902EB /* RecipeDirection.m */; };
+		C4FA32211C52B19F001902EB /* RecipeIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32141C52B19F001902EB /* RecipeIngredient.m */; };
+		C4FA32221C52B19F001902EB /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32161C52B19F001902EB /* Recipe.m */; };
 		C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32191C52B19F001902EB /* CategoriesTableViewController.m */; };
 		C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA321B1C52B19F001902EB /* RecipesTableViewController.m */; };
 		C4FA32291C52B1AB001902EB /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C4FA32271C52B1AB001902EB /* placeholder.png */; };
@@ -97,14 +97,14 @@
 		C4FA32081C52B19F001902EB /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		C4FA32091C52B19F001902EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C4FA320A1C52B19F001902EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C4FA320F1C52B19F001902EB /* FCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCategory.h; sourceTree = "<group>"; };
-		C4FA32101C52B19F001902EB /* FCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCategory.m; sourceTree = "<group>"; };
-		C4FA32111C52B19F001902EB /* FDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDirection.h; sourceTree = "<group>"; };
-		C4FA32121C52B19F001902EB /* FDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDirection.m; sourceTree = "<group>"; };
-		C4FA32131C52B19F001902EB /* FIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIngredient.h; sourceTree = "<group>"; };
-		C4FA32141C52B19F001902EB /* FIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIngredient.m; sourceTree = "<group>"; };
-		C4FA32151C52B19F001902EB /* FRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRecipe.h; sourceTree = "<group>"; };
-		C4FA32161C52B19F001902EB /* FRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRecipe.m; sourceTree = "<group>"; };
+		C4FA320F1C52B19F001902EB /* RecipeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCategory.h; sourceTree = "<group>"; };
+		C4FA32101C52B19F001902EB /* RecipeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCategory.m; sourceTree = "<group>"; };
+		C4FA32111C52B19F001902EB /* RecipeDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDirection.h; sourceTree = "<group>"; };
+		C4FA32121C52B19F001902EB /* RecipeDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDirection.m; sourceTree = "<group>"; };
+		C4FA32131C52B19F001902EB /* RecipeIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeIngredient.h; sourceTree = "<group>"; };
+		C4FA32141C52B19F001902EB /* RecipeIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeIngredient.m; sourceTree = "<group>"; };
+		C4FA32151C52B19F001902EB /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipe.h; sourceTree = "<group>"; };
+		C4FA32161C52B19F001902EB /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipe.m; sourceTree = "<group>"; };
 		C4FA32181C52B19F001902EB /* CategoriesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesTableViewController.h; sourceTree = "<group>"; };
 		C4FA32191C52B19F001902EB /* CategoriesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesTableViewController.m; sourceTree = "<group>"; };
 		C4FA321A1C52B19F001902EB /* RecipesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesTableViewController.h; sourceTree = "<group>"; };
@@ -269,14 +269,14 @@
 		C4FA320C1C52B19F001902EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C4FA320F1C52B19F001902EB /* FCategory.h */,
-				C4FA32101C52B19F001902EB /* FCategory.m */,
-				C4FA32111C52B19F001902EB /* FDirection.h */,
-				C4FA32121C52B19F001902EB /* FDirection.m */,
-				C4FA32131C52B19F001902EB /* FIngredient.h */,
-				C4FA32141C52B19F001902EB /* FIngredient.m */,
-				C4FA32151C52B19F001902EB /* FRecipe.h */,
-				C4FA32161C52B19F001902EB /* FRecipe.m */,
+				C4FA320F1C52B19F001902EB /* RecipeCategory.h */,
+				C4FA32101C52B19F001902EB /* RecipeCategory.m */,
+				C4FA32111C52B19F001902EB /* RecipeDirection.h */,
+				C4FA32121C52B19F001902EB /* RecipeDirection.m */,
+				C4FA32131C52B19F001902EB /* RecipeIngredient.h */,
+				C4FA32141C52B19F001902EB /* RecipeIngredient.m */,
+				C4FA32151C52B19F001902EB /* Recipe.h */,
+				C4FA32161C52B19F001902EB /* Recipe.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,17 +499,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4FA321F1C52B19F001902EB /* FCategory.m in Sources */,
+				C4FA321F1C52B19F001902EB /* RecipeCategory.m in Sources */,
 				C09743601BCDA2C90068E216 /* main.m in Sources */,
-				C4FA32221C52B19F001902EB /* FRecipe.m in Sources */,
+				C4FA32221C52B19F001902EB /* Recipe.m in Sources */,
 				C4FA321C1C52B19F001902EB /* APIClient.m in Sources */,
 				C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */,
-				C4FA32201C52B19F001902EB /* FDirection.m in Sources */,
+				C4FA32201C52B19F001902EB /* RecipeDirection.m in Sources */,
 				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
 				C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */,
 				C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */,
 				C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */,
-				C4FA32211C52B19F001902EB /* FIngredient.m in Sources */,
+				C4FA32211C52B19F001902EB /* RecipeIngredient.m in Sources */,
 				C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

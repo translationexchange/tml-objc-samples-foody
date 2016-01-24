@@ -6,15 +6,15 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "FCategory.h"
-#import "FRecipe.h"
+#import "RecipeCategory.h"
+#import "Recipe.h"
 #import "APIClient.h"
 #import "AppDelegate.h"
 
-@implementation FCategory
+@implementation RecipeCategory
 
 - (id)copyWithZone:(NSZone *)zone {
-    FCategory *copy = [[FCategory alloc] init];
+    RecipeCategory *copy = [[RecipeCategory alloc] init];
     copy.categoryID = self.categoryID;
     copy.key = self.key;
     copy.name = self.name;
@@ -46,10 +46,10 @@
     if ([object isKindOfClass:[self class]] == NO) {
         return NO;
     }
-    return [self isEqualToCategory:(FCategory *)object];
+    return [self isEqualToCategory:(RecipeCategory *)object];
 }
 
-- (BOOL)isEqualToCategory:(FCategory *)category {
+- (BOOL)isEqualToCategory:(RecipeCategory *)category {
     return (self.categoryID == category.categoryID
             && (self.key == category.key
                 || [self.key isEqualToString:category.key])

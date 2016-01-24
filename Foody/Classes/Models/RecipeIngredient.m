@@ -6,12 +6,12 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "FIngredient.h"
+#import "RecipeIngredient.h"
 
-@implementation FIngredient
+@implementation RecipeIngredient
 
 - (id)copyWithZone:(NSZone *)zone {
-    FIngredient *copy = [[FIngredient alloc] init];
+    RecipeIngredient *copy = [[RecipeIngredient alloc] init];
     copy.ingredientID = self.ingredientID;
     copy.index = self.index;
     copy.name = self.name;
@@ -40,13 +40,13 @@
     if (self == object) {
         return YES;
     }
-    if ([self isKindOfClass:[FIngredient class]] == NO) {
+    if ([self isKindOfClass:[RecipeIngredient class]] == NO) {
         return NO;
     }
-    return [self isEqualToIngredient:(FIngredient *)object];
+    return [self isEqualToIngredient:(RecipeIngredient *)object];
 }
 
-- (BOOL)isEqualToIngredient:(FIngredient *)ingredient {
+- (BOOL)isEqualToIngredient:(RecipeIngredient *)ingredient {
     return (self.ingredientID == ingredient.ingredientID
             && self.index == ingredient.index
             && (self.name == ingredient.name
