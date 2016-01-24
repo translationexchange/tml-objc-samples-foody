@@ -17,8 +17,71 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     self.apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
+    
+    // Dynamic Splash
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSArray *backgroundPaths = [mainBundle pathsForResourcesOfType:@"jpg" inDirectory:@"Intro Backgrounds"];
+    UIWindow *window = self.window;
+    
+//    UIViewController *splashViewController = window.rootViewController;
+//    UIImageView *splashImageView = nil;
+//    if (splashViewController != nil) {
+//        for (UIView *subview in [splashViewController.view subviews]) {
+//            if ([subview isKindOfClass:[UIImageView class]] == YES) {
+//                splashImageView = (UIImageView *)subview;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    UIImage *newImage = nil;
+//    if (splashImageView != nil) {
+//        NSInteger index = (arc4random() % backgroundPaths.count);
+//        NSString *newImagePath = [backgroundPaths objectAtIndex:index];
+//        newImage = [UIImage imageWithContentsOfFile:newImagePath];
+//    }
+//    
+//    if (newImage != nil) {
+//        splashImageView.image = newImage;
+//        [splashImageView setNeedsLayout];
+//    }
+//    
+//    [NSThread sleepForTimeInterval:1.33];
+    
+    UIStoryboard *launchScreenStoryBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:mainBundle];
+    UIViewController *splashViewController = [launchScreenStoryBoard instantiateInitialViewController];
+    NSArray *subviews = [splashViewController.view subviews];
+    UIImageView *splashImageView = nil;
+    for (UIView *subview in subviews) {
+        if ([subview isKindOfClass:[UIImageView class]] == YES) {
+            CGRect frame = subview.frame;
+            if (CGPointEqualToPoint(CGPointZero, frame.origin) == YES) {
+                splashImageView = (UIImageView *)subview;
+                break;
+            }
+        }
+    }
+    
+    UIImage *newImage = nil;
+    if (splashImageView != nil) {
+        NSInteger index = (arc4random() % backgroundPaths.count);
+        NSString *newImagePath = [backgroundPaths objectAtIndex:index];
+        newImage = [UIImage imageWithContentsOfFile:newImagePath];
+    }
+    
+    if (newImage != nil) {
+        splashImageView.image = newImage;
+        splashImageView.hidden = NO;
+        [window setRootViewController:splashViewController];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.33 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
+            UIViewController *appViewController = [mainStoryBoard instantiateInitialViewController];
+            [window setRootViewController:appViewController];
+        });
+    }
+    
     return YES;
 }
 

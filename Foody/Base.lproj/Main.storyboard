@@ -116,7 +116,7 @@
         <scene sceneID="2jU-RO-3sI">
             <objects>
                 <navigationController id="WSI-mg-xU3" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wt-Sw-lxy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="3wt-Sw-lxy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
