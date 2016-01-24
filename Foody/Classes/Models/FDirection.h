@@ -10,4 +10,8 @@
 
 @interface FDirection : TMLModel
 
+@property (assign, nonatomic) NSInteger directionID;
+@property (assign, nonatomic) NSInteger index;
+@property (strong, nonatomic) NSString *directionDescription;
+
 @end
