@@ -24,7 +24,6 @@
 		C4CC8D001C54891E00FACF81 /* SplashImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4CC8CFF1C54891E00FACF81 /* SplashImage.jpg */; };
 		C4FA321C1C52B19F001902EB /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32081C52B19F001902EB /* APIClient.m */; };
 		C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320A1C52B19F001902EB /* AppDelegate.m */; };
-		C4FA321E1C52B19F001902EB /* FBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320E1C52B19F001902EB /* FBase.m */; };
 		C4FA321F1C52B19F001902EB /* FCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32101C52B19F001902EB /* FCategory.m */; };
 		C4FA32201C52B19F001902EB /* FDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32121C52B19F001902EB /* FDirection.m */; };
 		C4FA32211C52B19F001902EB /* FIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32141C52B19F001902EB /* FIngredient.m */; };
@@ -98,8 +97,6 @@
 		C4FA32081C52B19F001902EB /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		C4FA32091C52B19F001902EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C4FA320A1C52B19F001902EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C4FA320D1C52B19F001902EB /* FBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBase.h; sourceTree = "<group>"; };
-		C4FA320E1C52B19F001902EB /* FBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBase.m; sourceTree = "<group>"; };
 		C4FA320F1C52B19F001902EB /* FCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCategory.h; sourceTree = "<group>"; };
 		C4FA32101C52B19F001902EB /* FCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCategory.m; sourceTree = "<group>"; };
 		C4FA32111C52B19F001902EB /* FDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDirection.h; sourceTree = "<group>"; };
@@ -272,8 +269,6 @@
 		C4FA320C1C52B19F001902EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C4FA320D1C52B19F001902EB /* FBase.h */,
-				C4FA320E1C52B19F001902EB /* FBase.m */,
 				C4FA320F1C52B19F001902EB /* FCategory.h */,
 				C4FA32101C52B19F001902EB /* FCategory.m */,
 				C4FA32111C52B19F001902EB /* FDirection.h */,
@@ -510,7 +505,6 @@
 				C4FA321C1C52B19F001902EB /* APIClient.m in Sources */,
 				C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */,
 				C4FA32201C52B19F001902EB /* FDirection.m in Sources */,
-				C4FA321E1C52B19F001902EB /* FBase.m in Sources */,
 				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
 				C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */,
 				C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */,
