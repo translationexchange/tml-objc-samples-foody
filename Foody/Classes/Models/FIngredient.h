@@ -10,4 +10,10 @@
 
 @interface FIngredient : TMLModel
 
+@property (assign, nonatomic) NSInteger ingredientID;
+@property (assign, nonatomic) NSInteger index;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *measurement;
+@property (strong, nonatomic) NSString *quantity;
+
 @end
