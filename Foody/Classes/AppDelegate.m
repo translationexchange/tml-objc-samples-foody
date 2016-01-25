@@ -24,31 +24,6 @@
     NSArray *backgroundPaths = [mainBundle pathsForResourcesOfType:@"jpg" inDirectory:@"Intro Backgrounds"];
     UIWindow *window = self.window;
     
-//    UIViewController *splashViewController = window.rootViewController;
-//    UIImageView *splashImageView = nil;
-//    if (splashViewController != nil) {
-//        for (UIView *subview in [splashViewController.view subviews]) {
-//            if ([subview isKindOfClass:[UIImageView class]] == YES) {
-//                splashImageView = (UIImageView *)subview;
-//                break;
-//            }
-//        }
-//    }
-//    
-//    UIImage *newImage = nil;
-//    if (splashImageView != nil) {
-//        NSInteger index = (arc4random() % backgroundPaths.count);
-//        NSString *newImagePath = [backgroundPaths objectAtIndex:index];
-//        newImage = [UIImage imageWithContentsOfFile:newImagePath];
-//    }
-//    
-//    if (newImage != nil) {
-//        splashImageView.image = newImage;
-//        [splashImageView setNeedsLayout];
-//    }
-//    
-//    [NSThread sleepForTimeInterval:1.33];
-    
     UIStoryboard *launchScreenStoryBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:mainBundle];
     UIViewController *splashViewController = [launchScreenStoryBoard instantiateInitialViewController];
     NSArray *subviews = [splashViewController.view subviews];
