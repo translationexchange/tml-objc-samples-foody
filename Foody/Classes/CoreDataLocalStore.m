@@ -209,7 +209,13 @@
     }
     NSCompoundPredicate *predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:subpredicates];
     fetchRequest.predicate = predicate;
-    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+    NSPersistentStoreRequest *deleteRequest;
+    if (NSClassFromString(@"NSBatchDeleteRequest") != nil) {
+        deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+    }
+    else {
+        deleteRequest = fetchRequest;
+    }
     return deleteRequest;
 }
 
@@ -240,6 +246,24 @@
         TMLError(@"Error executing request: %@", error);
     }
     return result;
+}
+
+- (void)executeDeleteRequest:(NSPersistentStoreRequest *)request {
+    if ([request isKindOfClass:[NSFetchRequest class]] == YES) {
+        NSArray *results = [self executeFetchRequest:(NSFetchRequest *)request];
+        for (NSManagedObject *mo in results) {
+            [_managedObjectContext delete:mo];
+        }
+    }
+    else {
+        [self executeRequest:request];
+    }
+    if ([_managedObjectContext hasChanges] == YES) {
+        NSError *error = nil;
+        if([_managedObjectContext save:&error] == NO) {
+            TMLError(@"Error executing delete request: %@", error);
+        }
+    }
 }
 
 #pragma mark - Categories
@@ -281,8 +305,8 @@
     if (ids.count == 0) {
         return;
     }
-    [self executeRequest:[self deleteRequestForEntityName:[RecipeCategoryMO entityName]
-                              excludingAttributesMatching:@{@"uid": ids}]];
+    [self executeDeleteRequest:[self deleteRequestForEntityName:[RecipeCategoryMO entityName]
+                                    excludingAttributesMatching:@{@"uid": ids}]];
 }
 
 #pragma mark - Recipes
@@ -321,8 +345,8 @@
     if (ids.count == 0) {
         return;
     }
-    [self executeRequest:[self deleteRequestForEntityName:[RecipeMO entityName]
-                              excludingAttributesMatching:@{@"uid": ids}]];
+    [self executeDeleteRequest:[self deleteRequestForEntityName:[RecipeMO entityName]
+                                    excludingAttributesMatching:@{@"uid": ids}]];
 }
 
 #pragma mark - Ingredients
@@ -350,8 +374,8 @@
     if (ids.count == 0) {
         return;
     }
-    [self executeRequest:[self deleteRequestForEntityName:[RecipeIngredientMO entityName]
-                              excludingAttributesMatching:@{@"uid": ids}]];
+    [self executeDeleteRequest:[self deleteRequestForEntityName:[RecipeIngredientMO entityName]
+                                    excludingAttributesMatching:@{@"uid": ids}]];
 }
 
 #pragma mark - Directions
@@ -379,8 +403,8 @@
     if (ids.count == 0) {
         return;
     }
-    [self executeRequest:[self deleteRequestForEntityName:[RecipeDirectionMO entityName]
-                              excludingAttributesMatching:@{@"uid": ids}]];
+    [self executeDeleteRequest:[self deleteRequestForEntityName:[RecipeDirectionMO entityName]
+                                    excludingAttributesMatching:@{@"uid": ids}]];
 }
 
 @end
