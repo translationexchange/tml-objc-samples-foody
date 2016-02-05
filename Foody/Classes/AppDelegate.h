@@ -10,12 +10,13 @@
 
 #define AppAPIClient (APIClient *)[(AppDelegate *)[[UIApplication sharedApplication] delegate] apiClient]
 
-@class APIClient;
+@class APIClient, SyncEngine;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly, nonatomic, strong) APIClient *apiClient;
+@property (readonly, nonatomic, strong) SyncEngine *syncEngine;
 
 @end
 

@@ -13,27 +13,40 @@
 
 @interface APIClient : TMLBasicAPIClient
 
-- (void)listAllCategories:(NSDictionary *)parameters
-               completion:(void(^)(NSArray *categories, NSError *error))completion;
+#pragma mark - Categories
+
+- (void)listCategories:(NSDictionary *)parameters
+            completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *categories, NSError *error))completion;
 
 - (void)categoryWithID:(NSInteger)categoryID
             parameters:(NSDictionary *)parameters
-            completion:(void(^)(RecipeCategory *category, NSError *error))completion;
+            completion:(void(^)(TMLAPIResponse *apiResponse, RecipeCategory *category, NSError *error))completion;
+
+#pragma mark - Recipes
+
+- (void)listRecipes:(NSDictionary *)parameters
+         completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
 
 - (void)recipesForCategoryWithID:(NSInteger)categoryID
                       parameters:(NSDictionary *)parameters
-                      completion:(void(^)(NSArray *recipes, NSError *error))completion;
+                      completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
 
 - (void)recipeWithID:(NSInteger)recipeID
           parameters:(NSDictionary *)parameters
-          completion:(void(^)(Recipe *recipe, NSError *error))completion;
+          completion:(void(^)(TMLAPIResponse *apiResponse, Recipe *recipe, NSError *error))completion;
 
+#pragma mark - Directions
+- (void)listDirections:(NSDictionary *)parameters
+            completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error))completion;
 - (void)directionsForRecipeWithID:(NSInteger)recipeID
                        parameters:(NSDictionary *)parameters
-                       completion:(void(^)(NSArray *directions, NSError *error))completion;
+                       completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error))completion;
 
+#pragma mark - Ingredients
+- (void)listIngredients:(NSDictionary *)parameters
+             completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
 - (void)ingredientsForRecipeWithID:(NSInteger)recipeID
                         parameters:(NSDictionary *)parameters
-                        completion:(void(^)(NSArray *ingredients, NSError *error))completion;
+                        completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
 
 @end

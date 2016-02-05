@@ -13,8 +13,7 @@
 @implementation Recipe
 
 - (id)copyWithZone:(NSZone *)zone {
-    Recipe *copy = [[Recipe alloc] init];
-    copy.recipeID = self.recipeID;
+    Recipe *copy = (Recipe *)[super copyWithZone:zone];
     copy.featuredIndex = self.featuredIndex;
     copy.key = self.key;
     copy.name = self.name;
@@ -22,29 +21,32 @@
     copy.locale = self.locale;
     copy.preparationDescription = self.preparationDescription;
     copy.recipeDescription = self.recipeDescription;
+    copy.categoryID = self.categoryID;
     return copy;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:self.recipeID forKey:@"id"];
-    [aCoder encodeInteger:self.featuredIndex forKey:@"featured_index"];
-    [aCoder encodeObject:self.key forKey:@"key"];
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.locale forKey:@"locale"];
-    [aCoder encodeObject:self.imagePath forKey:@"image"];
-    [aCoder encodeObject:self.recipeDescription forKey:@"description"];
-    [aCoder encodeObject:self.preparationDescription forKey:@"preparation"];
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInteger:self.featuredIndex forKey:APIModel_FeaturedIndexPropertyName];
+    [aCoder encodeObject:self.key forKey:APIModel_KeyPropertyName];
+    [aCoder encodeObject:self.name forKey:APIModel_NamePropertyName];
+    [aCoder encodeObject:self.locale forKey:APIModel_LocalePropertyName];
+    [aCoder encodeObject:self.imagePath forKey:APIModel_ImagePropertyName];
+    [aCoder encodeObject:self.recipeDescription forKey:APIModel_DescriptionPropertyName];
+    [aCoder encodeObject:self.preparationDescription forKey:APIModel_PreparationPropertyName];
+    [aCoder encodeInteger:self.categoryID forKey:APIModel_CategoryIDPropertyName];
 }
 
 - (void)decodeWithCoder:(NSCoder *)aDecoder {
-    self.recipeID = [aDecoder decodeIntegerForKey:@"id"];
-    self.featuredIndex = [aDecoder decodeIntegerForKey:@"featured_index"];
-    self.key = [aDecoder decodeObjectForKey:@"key"];
-    self.name = [aDecoder decodeObjectForKey:@"name"];
-    self.locale = [aDecoder decodeObjectForKey:@"locale"];
-    self.imagePath = [aDecoder decodeObjectForKey:@"image"];
-    self.recipeDescription = [aDecoder decodeObjectForKey:@"description"];
-    self.preparationDescription = [aDecoder decodeObjectForKey:@"preparation"];
+    [super decodeWithCoder:aDecoder];
+    self.featuredIndex = [aDecoder decodeIntegerForKey:APIModel_FeaturedIndexPropertyName];
+    self.key = [aDecoder decodeObjectForKey:APIModel_KeyPropertyName];
+    self.name = [aDecoder decodeObjectForKey:APIModel_NamePropertyName];
+    self.locale = [aDecoder decodeObjectForKey:APIModel_LocalePropertyName];
+    self.imagePath = [aDecoder decodeObjectForKey:APIModel_ImagePropertyName];
+    self.recipeDescription = [aDecoder decodeObjectForKey:APIModel_DescriptionPropertyName];
+    self.preparationDescription = [aDecoder decodeObjectForKey:APIModel_PreparationPropertyName];
+    self.categoryID = [aDecoder decodeIntegerForKey:APIModel_CategoryIDPropertyName];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -58,8 +60,9 @@
 }
 
 - (BOOL)isEqualToRecipe:(Recipe *)recipe {
-    return (self.recipeID == recipe.recipeID
+    return (self.uid == recipe.uid
             && self.featuredIndex == recipe.featuredIndex
+            && self.categoryID == recipe.categoryID
             && (self.key == recipe.key
                 || [self.key isEqualToString:recipe.key])
             && (self.name == recipe.name
@@ -75,7 +78,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@:%li:%@ %p>", NSStringFromClass(self.class), self.recipeID, self.name, self];
+    return [NSString stringWithFormat:@"<%@:%li:%@ %p>", NSStringFromClass(self.class), self.uid, self.name, self];
 }
 
 @end

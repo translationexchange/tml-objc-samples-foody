@@ -14,8 +14,7 @@
 @implementation RecipeCategory
 
 - (id)copyWithZone:(NSZone *)zone {
-    RecipeCategory *copy = [[RecipeCategory alloc] init];
-    copy.categoryID = self.categoryID;
+    RecipeCategory *copy = (RecipeCategory *)[super copyWithZone:zone];
     copy.key = self.key;
     copy.name = self.name;
     copy.locale = self.locale;
@@ -24,19 +23,19 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:self.categoryID forKey:@"id"];
-    [aCoder encodeObject:self.key forKey:@"key"];
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.locale forKey:@"locale"];
-    [aCoder encodeInteger:self.featuredIndex forKey:@"featured_index"];
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.key forKey:APIModel_KeyPropertyName];
+    [aCoder encodeObject:self.name forKey:APIModel_NamePropertyName];
+    [aCoder encodeObject:self.locale forKey:APIModel_LocalePropertyName];
+    [aCoder encodeInteger:self.featuredIndex forKey:APIModel_FeaturedIndexPropertyName];
 }
 
 - (void)decodeWithCoder:(NSCoder *)aDecoder {
-    self.categoryID = [aDecoder decodeIntegerForKey:@"id"];
-    self.key = [aDecoder decodeObjectForKey:@"key"];
-    self.name = [aDecoder decodeObjectForKey:@"name"];
-    self.locale = [aDecoder decodeObjectForKey:@"locale"];
-    self.featuredIndex = [aDecoder decodeIntegerForKey:@"featured_index"];
+    [super decodeWithCoder:aDecoder];
+    self.key = [aDecoder decodeObjectForKey:APIModel_KeyPropertyName];
+    self.name = [aDecoder decodeObjectForKey:APIModel_NamePropertyName];
+    self.locale = [aDecoder decodeObjectForKey:APIModel_LocalePropertyName];
+    self.featuredIndex = [aDecoder decodeIntegerForKey:APIModel_FeaturedIndexPropertyName];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -50,7 +49,7 @@
 }
 
 - (BOOL)isEqualToCategory:(RecipeCategory *)category {
-    return (self.categoryID == category.categoryID
+    return (self.uid == category.uid
             && (self.key == category.key
                 || [self.key isEqualToString:category.key])
             && (self.locale == category.locale
@@ -61,7 +60,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@:%li:%@ %p>", NSStringFromClass(self.class), self.categoryID, self.name, self];
+    return [NSString stringWithFormat:@"<%@:%li:%@ %p>", NSStringFromClass(self.class), self.uid, self.name, self];
 }
 
 @end

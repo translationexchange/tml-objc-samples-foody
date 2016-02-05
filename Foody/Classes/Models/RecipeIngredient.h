@@ -6,14 +6,14 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <TMLKit/TMLModel.h>
+#import "APIModel.h"
 
-@interface RecipeIngredient : TMLModel
+@interface RecipeIngredient : APIModel
 
-@property (assign, nonatomic) NSInteger ingredientID;
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *measurement;
 @property (strong, nonatomic) NSString *quantity;
+@property (assign, nonatomic) NSInteger recipeID;
 
 @end

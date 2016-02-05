@@ -11,29 +11,31 @@
 @implementation RecipeIngredient
 
 - (id)copyWithZone:(NSZone *)zone {
-    RecipeIngredient *copy = [[RecipeIngredient alloc] init];
-    copy.ingredientID = self.ingredientID;
+    RecipeIngredient *copy = (RecipeIngredient *)[super copyWithZone:zone];
     copy.index = self.index;
     copy.name = self.name;
     copy.measurement = self.measurement;
     copy.quantity = self.quantity;
+    copy.recipeID = self.recipeID;
     return copy;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:self.ingredientID forKey:@"id"];
-    [aCoder encodeInteger:self.index forKey:@"index"];
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.measurement forKey:@"measurements"];
-    [aCoder encodeObject:self.quantity forKey:@"quantity"];
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInteger:self.index forKey:APIModel_IndexPropertyName];
+    [aCoder encodeObject:self.name forKey:APIModel_NamePropertyName];
+    [aCoder encodeObject:self.measurement forKey:APIModel_MeasurementsPropertyName];
+    [aCoder encodeObject:self.quantity forKey:APIModel_QuantityPropertyName];
+    [aCoder encodeInteger:self.recipeID forKey:APIModel_RecipeIDPropertyName];
 }
 
 - (void)decodeWithCoder:(NSCoder *)aDecoder {
-    self.ingredientID = [aDecoder decodeIntegerForKey:@"id"];
-    self.index = [aDecoder decodeIntegerForKey:@"index"];
-    self.name = [aDecoder decodeObjectForKey:@"name"];
-    self.measurement = [aDecoder decodeObjectForKey:@"measurements"];
-    self.quantity = [aDecoder decodeObjectForKey:@"quantity"];
+    [super decodeWithCoder:aDecoder];
+    self.index = [aDecoder decodeIntegerForKey:APIModel_IndexPropertyName];
+    self.name = [aDecoder decodeObjectForKey:APIModel_NamePropertyName];
+    self.measurement = [aDecoder decodeObjectForKey:APIModel_MeasurementsPropertyName];
+    self.quantity = [aDecoder decodeObjectForKey:APIModel_QuantityPropertyName];
+    self.recipeID = [aDecoder decodeIntegerForKey:APIModel_RecipeIDPropertyName];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -47,7 +49,8 @@
 }
 
 - (BOOL)isEqualToIngredient:(RecipeIngredient *)ingredient {
-    return (self.ingredientID == ingredient.ingredientID
+    return (self.uid == ingredient.uid
+            && self.recipeID == ingredient.recipeID
             && self.index == ingredient.index
             && (self.name == ingredient.name
                 || [self.name isEqualToString:ingredient.name])

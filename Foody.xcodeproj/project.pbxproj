@@ -22,6 +22,20 @@
 		C4CC8CFD1C54852300FACF81 /* 4.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4CC8CF21C5484D900FACF81 /* 4.jpg */; };
 		C4CC8CFE1C54852300FACF81 /* 5.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4CC8CF31C5484D900FACF81 /* 5.jpg */; };
 		C4CC8D001C54891E00FACF81 /* SplashImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4CC8CFF1C54891E00FACF81 /* SplashImage.jpg */; };
+		C4CC8D071C55671F00FACF81 /* Foody.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D051C55671F00FACF81 /* Foody.xcdatamodeld */; };
+		C4CC8D5D1C55CC2F00FACF81 /* _RecipeCategoryMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D4E1C55CC2F00FACF81 /* _RecipeCategoryMO.m */; };
+		C4CC8D5E1C55CC2F00FACF81 /* _RecipeDirectionMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D501C55CC2F00FACF81 /* _RecipeDirectionMO.m */; };
+		C4CC8D5F1C55CC2F00FACF81 /* _RecipeIngredientMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D521C55CC2F00FACF81 /* _RecipeIngredientMO.m */; };
+		C4CC8D601C55CC2F00FACF81 /* _RecipeMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D541C55CC2F00FACF81 /* _RecipeMO.m */; };
+		C4CC8D611C55CC2F00FACF81 /* RecipeCategoryMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D561C55CC2F00FACF81 /* RecipeCategoryMO.m */; };
+		C4CC8D621C55CC2F00FACF81 /* RecipeDirectionMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D581C55CC2F00FACF81 /* RecipeDirectionMO.m */; };
+		C4CC8D631C55CC2F00FACF81 /* RecipeIngredientMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D5A1C55CC2F00FACF81 /* RecipeIngredientMO.m */; };
+		C4CC8D641C55CC2F00FACF81 /* RecipeMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D5C1C55CC2F00FACF81 /* RecipeMO.m */; };
+		C4CC8D681C55CDD200FACF81 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D671C55CDD200FACF81 /* SyncEngine.m */; };
+		C4CC8D6B1C55D00200FACF81 /* CoreDataLocalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D6A1C55D00200FACF81 /* CoreDataLocalStore.m */; };
+		C4CC8D7E1C580C8A00FACF81 /* _ModelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D7B1C580C8A00FACF81 /* _ModelMO.m */; };
+		C4CC8D7F1C580C8A00FACF81 /* ModelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D7D1C580C8A00FACF81 /* ModelMO.m */; };
+		C4CC8D821C58481F00FACF81 /* APIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC8D811C58481F00FACF81 /* APIModel.m */; };
 		C4FA321C1C52B19F001902EB /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32081C52B19F001902EB /* APIClient.m */; };
 		C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA320A1C52B19F001902EB /* AppDelegate.m */; };
 		C4FA321F1C52B19F001902EB /* RecipeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA32101C52B19F001902EB /* RecipeCategory.m */; };
@@ -93,6 +107,33 @@
 		C4CC8CF21C5484D900FACF81 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		C4CC8CF31C5484D900FACF81 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		C4CC8CFF1C54891E00FACF81 /* SplashImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashImage.jpg; sourceTree = "<group>"; };
+		C4CC8D061C55671F00FACF81 /* Foody.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foody.xcdatamodel; sourceTree = "<group>"; };
+		C4CC8D4D1C55CC2F00FACF81 /* _RecipeCategoryMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipeCategoryMO.h; sourceTree = "<group>"; };
+		C4CC8D4E1C55CC2F00FACF81 /* _RecipeCategoryMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipeCategoryMO.m; sourceTree = "<group>"; };
+		C4CC8D4F1C55CC2F00FACF81 /* _RecipeDirectionMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipeDirectionMO.h; sourceTree = "<group>"; };
+		C4CC8D501C55CC2F00FACF81 /* _RecipeDirectionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipeDirectionMO.m; sourceTree = "<group>"; };
+		C4CC8D511C55CC2F00FACF81 /* _RecipeIngredientMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipeIngredientMO.h; sourceTree = "<group>"; };
+		C4CC8D521C55CC2F00FACF81 /* _RecipeIngredientMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipeIngredientMO.m; sourceTree = "<group>"; };
+		C4CC8D531C55CC2F00FACF81 /* _RecipeMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipeMO.h; sourceTree = "<group>"; };
+		C4CC8D541C55CC2F00FACF81 /* _RecipeMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipeMO.m; sourceTree = "<group>"; };
+		C4CC8D551C55CC2F00FACF81 /* RecipeCategoryMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCategoryMO.h; sourceTree = "<group>"; };
+		C4CC8D561C55CC2F00FACF81 /* RecipeCategoryMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCategoryMO.m; sourceTree = "<group>"; };
+		C4CC8D571C55CC2F00FACF81 /* RecipeDirectionMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDirectionMO.h; sourceTree = "<group>"; };
+		C4CC8D581C55CC2F00FACF81 /* RecipeDirectionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDirectionMO.m; sourceTree = "<group>"; };
+		C4CC8D591C55CC2F00FACF81 /* RecipeIngredientMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeIngredientMO.h; sourceTree = "<group>"; };
+		C4CC8D5A1C55CC2F00FACF81 /* RecipeIngredientMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeIngredientMO.m; sourceTree = "<group>"; };
+		C4CC8D5B1C55CC2F00FACF81 /* RecipeMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeMO.h; sourceTree = "<group>"; };
+		C4CC8D5C1C55CC2F00FACF81 /* RecipeMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeMO.m; sourceTree = "<group>"; };
+		C4CC8D661C55CDD200FACF81 /* SyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncEngine.h; sourceTree = "<group>"; };
+		C4CC8D671C55CDD200FACF81 /* SyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncEngine.m; sourceTree = "<group>"; };
+		C4CC8D691C55D00200FACF81 /* CoreDataLocalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataLocalStore.h; sourceTree = "<group>"; };
+		C4CC8D6A1C55D00200FACF81 /* CoreDataLocalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataLocalStore.m; sourceTree = "<group>"; };
+		C4CC8D7A1C580C8A00FACF81 /* _ModelMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ModelMO.h; sourceTree = "<group>"; };
+		C4CC8D7B1C580C8A00FACF81 /* _ModelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ModelMO.m; sourceTree = "<group>"; };
+		C4CC8D7C1C580C8A00FACF81 /* ModelMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelMO.h; sourceTree = "<group>"; };
+		C4CC8D7D1C580C8A00FACF81 /* ModelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelMO.m; sourceTree = "<group>"; };
+		C4CC8D801C58481F00FACF81 /* APIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIModel.h; sourceTree = "<group>"; };
+		C4CC8D811C58481F00FACF81 /* APIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIModel.m; sourceTree = "<group>"; };
 		C4FA32071C52B19F001902EB /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		C4FA32081C52B19F001902EB /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		C4FA32091C52B19F001902EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -186,6 +227,7 @@
 		C097435D1BCDA2C90068E216 /* Foody */ = {
 			isa = PBXGroup;
 			children = (
+				C4CC8D041C5566A500FACF81 /* CoreData */,
 				C4FA32251C52B1AB001902EB /* Assets */,
 				C097436A1BCDA2C90068E216 /* Assets.xcassets */,
 				C4FA32051C52B19F001902EB /* Classes */,
@@ -244,15 +286,55 @@
 			path = "Intro Backgrounds";
 			sourceTree = "<group>";
 		};
+		C4CC8D041C5566A500FACF81 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C4CC8D7A1C580C8A00FACF81 /* _ModelMO.h */,
+				C4CC8D7B1C580C8A00FACF81 /* _ModelMO.m */,
+				C4CC8D4D1C55CC2F00FACF81 /* _RecipeCategoryMO.h */,
+				C4CC8D4E1C55CC2F00FACF81 /* _RecipeCategoryMO.m */,
+				C4CC8D4F1C55CC2F00FACF81 /* _RecipeDirectionMO.h */,
+				C4CC8D501C55CC2F00FACF81 /* _RecipeDirectionMO.m */,
+				C4CC8D511C55CC2F00FACF81 /* _RecipeIngredientMO.h */,
+				C4CC8D521C55CC2F00FACF81 /* _RecipeIngredientMO.m */,
+				C4CC8D531C55CC2F00FACF81 /* _RecipeMO.h */,
+				C4CC8D541C55CC2F00FACF81 /* _RecipeMO.m */,
+				C4CC8D051C55671F00FACF81 /* Foody.xcdatamodeld */,
+				C4CC8D7C1C580C8A00FACF81 /* ModelMO.h */,
+				C4CC8D7D1C580C8A00FACF81 /* ModelMO.m */,
+				C4CC8D551C55CC2F00FACF81 /* RecipeCategoryMO.h */,
+				C4CC8D561C55CC2F00FACF81 /* RecipeCategoryMO.m */,
+				C4CC8D571C55CC2F00FACF81 /* RecipeDirectionMO.h */,
+				C4CC8D581C55CC2F00FACF81 /* RecipeDirectionMO.m */,
+				C4CC8D591C55CC2F00FACF81 /* RecipeIngredientMO.h */,
+				C4CC8D5A1C55CC2F00FACF81 /* RecipeIngredientMO.m */,
+				C4CC8D5B1C55CC2F00FACF81 /* RecipeMO.h */,
+				C4CC8D5C1C55CC2F00FACF81 /* RecipeMO.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		C4CC8D651C55CDAC00FACF81 /* Sync Engine */ = {
+			isa = PBXGroup;
+			children = (
+				C4CC8D661C55CDD200FACF81 /* SyncEngine.h */,
+				C4CC8D671C55CDD200FACF81 /* SyncEngine.m */,
+			);
+			path = "Sync Engine";
+			sourceTree = "<group>";
+		};
 		C4FA32051C52B19F001902EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C4CC8D651C55CDAC00FACF81 /* Sync Engine */,
 				C4FA322A1C52B2F4001902EB /* Views */,
 				C4FA32061C52B19F001902EB /* APIClient */,
 				C4FA32091C52B19F001902EB /* AppDelegate.h */,
 				C4FA320A1C52B19F001902EB /* AppDelegate.m */,
 				C4FA320C1C52B19F001902EB /* Models */,
 				C4FA32171C52B19F001902EB /* View Controllers */,
+				C4CC8D691C55D00200FACF81 /* CoreDataLocalStore.h */,
+				C4CC8D6A1C55D00200FACF81 /* CoreDataLocalStore.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -277,6 +359,8 @@
 				C4FA32141C52B19F001902EB /* RecipeIngredient.m */,
 				C4FA32151C52B19F001902EB /* Recipe.h */,
 				C4FA32161C52B19F001902EB /* Recipe.m */,
+				C4CC8D801C58481F00FACF81 /* APIModel.h */,
+				C4CC8D811C58481F00FACF81 /* APIModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,18 +583,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CC8D631C55CC2F00FACF81 /* RecipeIngredientMO.m in Sources */,
+				C4CC8D7E1C580C8A00FACF81 /* _ModelMO.m in Sources */,
+				C4CC8D5E1C55CC2F00FACF81 /* _RecipeDirectionMO.m in Sources */,
 				C4FA321F1C52B19F001902EB /* RecipeCategory.m in Sources */,
 				C09743601BCDA2C90068E216 /* main.m in Sources */,
 				C4FA32221C52B19F001902EB /* Recipe.m in Sources */,
 				C4FA321C1C52B19F001902EB /* APIClient.m in Sources */,
+				C4CC8D621C55CC2F00FACF81 /* RecipeDirectionMO.m in Sources */,
+				C4CC8D641C55CC2F00FACF81 /* RecipeMO.m in Sources */,
 				C4FA321D1C52B19F001902EB /* AppDelegate.m in Sources */,
 				C4FA32201C52B19F001902EB /* RecipeDirection.m in Sources */,
+				C4CC8D821C58481F00FACF81 /* APIModel.m in Sources */,
 				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
 				C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */,
 				C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */,
 				C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */,
+				C4CC8D611C55CC2F00FACF81 /* RecipeCategoryMO.m in Sources */,
 				C4FA32211C52B19F001902EB /* RecipeIngredient.m in Sources */,
+				C4CC8D681C55CDD200FACF81 /* SyncEngine.m in Sources */,
+				C4CC8D5F1C55CC2F00FACF81 /* _RecipeIngredientMO.m in Sources */,
+				C4CC8D071C55671F00FACF81 /* Foody.xcdatamodeld in Sources */,
 				C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */,
+				C4CC8D7F1C580C8A00FACF81 /* ModelMO.m in Sources */,
+				C4CC8D6B1C55D00200FACF81 /* CoreDataLocalStore.m in Sources */,
+				C4CC8D601C55CC2F00FACF81 /* _RecipeMO.m in Sources */,
+				C4CC8D5D1C55CC2F00FACF81 /* _RecipeCategoryMO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +863,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C4CC8D051C55671F00FACF81 /* Foody.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C4CC8D061C55671F00FACF81 /* Foody.xcdatamodel */,
+			);
+			currentVersion = C4CC8D061C55671F00FACF81 /* Foody.xcdatamodel */;
+			path = Foody.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C09743531BCDA2C90068E216 /* Project object */;
 }

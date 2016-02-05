@@ -6,12 +6,12 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <TMLKit/TMLModel.h>
+#import "APIModel.h"
 
-@interface RecipeDirection : TMLModel
+@interface RecipeDirection : APIModel
 
-@property (assign, nonatomic) NSInteger directionID;
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *directionDescription;
+@property (assign, nonatomic) NSInteger recipeID;
 
 @end

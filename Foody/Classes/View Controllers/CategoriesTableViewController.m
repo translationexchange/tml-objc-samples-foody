@@ -6,15 +6,19 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
+#import "APIClient.h"
 #import "AppDelegate.h"
 #import "CategoriesTableViewController.h"
+#import "CoreDataLocalStore.h"
 #import "RecipeCategory.h"
 #import "RecipesTableViewController.h"
-#import "APIClient.h"
 
-@interface CategoriesTableViewController ()
+@interface CategoriesTableViewController () {
+    BOOL _observingNotifications;
+    NSUInteger _numberOfCategories;
+}
 
-@property(nonatomic, strong) NSArray *categories;
+@property(nonatomic, strong) NSMutableArray *categories;
 @property(nonatomic, strong) UIRefreshControl *refreshControl;
 @property(nonatomic, strong) RecipeCategory *category;
 
@@ -24,14 +28,14 @@
 
 @synthesize refreshControl, categories, category;
 
+- (void)dealloc {
+    [self teardownNotificationObserving];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupNotificationObserving];
     
     refreshControl = [[UIRefreshControl alloc]init];
     [self.tableView addSubview:refreshControl];
@@ -40,14 +44,22 @@
 }
 
 - (void)refreshTable {
-    [AppAPIClient listAllCategories:nil
-                         completion:^(NSArray *newCategories, NSError *error) {
-                             if (error == nil) {
-                                 self.categories = newCategories;
-                                 [refreshControl endRefreshing];
-                                 [self.tableView reloadData];
-                             }
-                         }];
+    CoreDataLocalStore *localStore = [[[CoreDataLocalStore alloc] init] threadSafeLocalStore];
+    _numberOfCategories = [localStore countCategories];
+    UITableView *tableView = self.tableView;
+    NSInteger maxIndex = 0;
+    NSArray *visibleCells = [tableView visibleCells];
+    for (UITableViewCell *cell in visibleCells) {
+        if (cell.tag > maxIndex) {
+            maxIndex = cell.tag;
+        }
+    }
+
+    NSInteger limit = (maxIndex < 100) ? 100 : maxIndex;
+    self.categories = [[localStore listCategoriesFromOffset:0 limit:limit] mutableCopy];
+    
+    [refreshControl endRefreshing];
+    [tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -57,7 +69,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [categories count];
+    return _numberOfCategories;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,9 +78,22 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
     }
+    
+    if (categories.count <= indexPath.row) {
+        CoreDataLocalStore *localStore = [[[CoreDataLocalStore alloc] init] threadSafeLocalStore];
+        NSArray *additions = [localStore listCategoriesFromOffset:categories.count-1 limit:10];
+        if (additions.count > 0) {
+            [categories addObjectsFromArray:additions];
+        }
+    }
+    
+    if (categories.count <= indexPath.row) {
+        return nil;
+    }
    
-    RecipeCategory *aCategory = (RecipeCategory *) [categories objectAtIndex:indexPath.row];
+    RecipeCategoryMO *aCategory = (RecipeCategoryMO *) [categories objectAtIndex:indexPath.row];
     cell.textLabel.text = aCategory.name;
+    cell.tag = indexPath.row;
     
     return cell;
 }
@@ -84,6 +109,32 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     RecipesTableViewController *controller = (RecipesTableViewController *) [segue destinationViewController];
     controller.category = self.category;
+}
+
+#pragma mark - Notifications
+
+- (void)setupNotificationObserving {
+    if (_observingNotifications == YES) {
+        return;
+    }
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(mocChanged:)
+                   name:NSManagedObjectContextObjectsDidChangeNotification
+                 object:nil];
+    _observingNotifications = YES;
+}
+
+- (void)teardownNotificationObserving {
+    if (_observingNotifications == NO) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _observingNotifications = NO;
+}
+
+- (void)mocChanged:(NSNotification *)aNotification {
+    NSDictionary *info = [aNotification userInfo];
+    [self refreshTable];
 }
 
 @end

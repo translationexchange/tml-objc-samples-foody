@@ -6,11 +6,10 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <TMLKit/TMLModel.h>
+#import "APIModel.h"
 
-@interface Recipe : TMLModel
+@interface Recipe : APIModel
 
-@property (assign, nonatomic) NSInteger recipeID;
 @property (assign, nonatomic) NSInteger featuredIndex;
 @property (strong, nonatomic) NSString *key;
 @property (strong, nonatomic) NSString *imagePath;
@@ -18,6 +17,7 @@
 @property (strong, nonatomic) NSString *locale;
 @property (strong, nonatomic) NSString *preparationDescription;
 @property (strong, nonatomic) NSString *recipeDescription;
+@property (assign, nonatomic) NSInteger categoryID;
 
 - (BOOL)isEqualToRecipe:(Recipe *)recipe;
 

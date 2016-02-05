@@ -8,16 +8,24 @@
 
 #import "AppDelegate.h"
 #import "APIClient.h"
+#import "SyncEngine.h"
+#import <CoreData/CoreData.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () {
+    BOOL _observingNotifications;
+}
 @property (strong, readwrite, nonatomic) APIClient *apiClient;
+@property (strong, readwrite, nonatomic) SyncEngine *syncEngine;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
+    [self setupNotificationObserving];
+    
+    APIClient *apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
+    self.apiClient = apiClient;
     
     // Dynamic Splash
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -57,6 +65,10 @@
         });
     }
     
+    SyncEngine *syncEngine = [[SyncEngine alloc] initWithAPIClient:apiClient];
+    self.syncEngine = syncEngine;
+    [syncEngine sync];
+    
     return YES;
 }
 
@@ -80,6 +92,32 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self teardownNotificationObserving];
+}
+
+#pragma mark - Notifications
+- (void)setupNotificationObserving {
+    if (_observingNotifications == YES) {
+        return;
+    }
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(mocChanged:)
+                   name:NSManagedObjectContextObjectsDidChangeNotification
+                 object:nil];
+    _observingNotifications = YES;
+}
+
+- (void)teardownNotificationObserving {
+    if (_observingNotifications == NO) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _observingNotifications = NO;
+}
+
+- (void)mocChanged:(NSNotification *)aNotification {
+//    NSDictionary *info = [aNotification userInfo];
+//    NSLog(@"MOC CHANGE: %@", info);
 }
 
 @end
