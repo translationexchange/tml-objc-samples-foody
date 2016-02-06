@@ -15,6 +15,8 @@
 
 @interface CoreDataLocalStore : NSObject
 
+@property (readonly, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 + (instancetype)threadSafeLocalStore;
 - (instancetype)threadSafeLocalStore;
 
