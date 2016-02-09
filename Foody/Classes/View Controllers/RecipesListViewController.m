@@ -8,6 +8,7 @@
 
 #import "RecipesListViewController.h"
 #import "RecipeCollectionViewCell.h"
+#import "FeaturedRecipeCollectionViewCell.h"
 #import "CoreDataLocalStore.h"
 
 #define FETCH_BRACKET 10
@@ -22,6 +23,8 @@
     [super viewDidLoad];
     Class recipeCellClass = [RecipeCollectionViewCell class];
     [self.collectionView registerClass:recipeCellClass forCellWithReuseIdentifier:NSStringFromClass(recipeCellClass)];
+    Class featuredCellClass = [FeaturedRecipeCollectionViewCell class];
+    [self.collectionView registerClass:featuredCellClass forCellWithReuseIdentifier:NSStringFromClass(featuredCellClass)];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -88,9 +91,17 @@
     if (recipe == nil) {
         return nil;
     }
+    
+    RecipeCollectionViewCell *cell;
+    if (indexPath.row == 0) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([FeaturedRecipeCollectionViewCell class]) forIndexPath:indexPath];
+    }
+    else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecipeCollectionViewCell class]) forIndexPath:indexPath];
+    }
 
-    RecipeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecipeCollectionViewCell class]) forIndexPath:indexPath];
     cell.textLabel.text = recipe.name;
+    cell.subtextLabel.text = recipe.recipeDescription;
     CGRect frame = cell.frame;
     cell.frame = frame;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
@@ -121,15 +132,16 @@
     CGRect containerBounds = containerView.bounds;
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
     CGFloat defaultWidth = CGRectGetWidth(containerBounds)/2. - (flowLayout.minimumInteritemSpacing * 1.5);
+    CGFloat defaultHeight = defaultWidth * 1.33;
     CGSize result = CGSizeZero;
     if (indexPath.row == 0) {
         CGSize size = containerBounds.size;
-        CGFloat height = defaultWidth;
+        CGFloat height = defaultHeight;
         CGFloat width = size.width - (flowLayout.minimumInteritemSpacing * 2);
         result = CGSizeMake(width, height);
     }
     else {
-        result = CGSizeMake(defaultWidth, defaultWidth);
+        result = CGSizeMake(defaultWidth, defaultHeight);
     }
     return result;
 }

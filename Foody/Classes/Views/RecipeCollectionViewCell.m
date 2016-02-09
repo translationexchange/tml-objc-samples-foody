@@ -22,12 +22,21 @@
         
         self.textLabelInset = UIEdgeInsetsMake(8, 8, 8, 8);
         UILabel *textLabel = [[UILabel alloc] initWithFrame:frame];
-        textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:16.0];
+        textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:16.];
         textLabel.numberOfLines = 2;
+        textLabel.textColor = [UIColor blackColor];
         self.textLabel = textLabel;
+        
+        self.subtextLabelInset = UIEdgeInsetsMake(0, 8, 8, 8);
+        UILabel *subtextLabel = [[UILabel alloc] initWithFrame:frame];
+        subtextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.];
+        subtextLabel.numberOfLines = 3;
+        subtextLabel.textColor = [UIColor colorWithWhite:0. alpha:0.33];
+        self.subtextLabel = subtextLabel;
         
         self.contentView.backgroundColor = [UIColor whiteColor];
         
+        [self.contentView sendSubviewToBack:imageView];
     }
     return self;
 }
@@ -67,6 +76,23 @@
     [self setNeedsLayout];
 }
 
+- (void)setSubtextLabel:(UILabel *)subtextLabel {
+    if (_subtextLabel == subtextLabel) {
+        return;
+    }
+    [self willChangeValueForKey:@"subtextLabel"];
+    UIView *parentView = self.contentView;
+    if (_subtextLabel.superclass == parentView) {
+        [_subtextLabel removeFromSuperview];
+    }
+    _subtextLabel = subtextLabel;
+    if (subtextLabel != nil) {
+        [parentView addSubview:subtextLabel];
+    }
+    [self didChangeValueForKey:@"subtextLabel"];
+    [self setNeedsLayout];
+}
+
 - (void)setImage:(UIImage *)image {
     UIImageView *imageView = self.imageView;
     imageView.image = image;
@@ -76,13 +102,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    UIImageView *imageView = self.imageView;
-    CGRect imageFrame = [self frameForImageView];
-    imageView.frame = imageFrame;
-    
-    UILabel *label = self.textLabel;
-    CGRect labelFrame = [self frameForLabel];
-    label.frame = labelFrame;
+    self.imageView.frame = [self frameForImageView];
+    self.textLabel.frame = [self frameForTextLabel];
+    self.subtextLabel.frame = [self frameForSubtextLabel];
 }
 
 - (CGRect)frameForImageView {
@@ -90,14 +112,33 @@
     return CGRectMake(0, 0, CGRectGetWidth(ourBounds), floorf(CGRectGetHeight(ourBounds)/2.));
 }
 
-- (CGRect)frameForLabel {
+- (CGRect)frameForTextLabel {
     UILabel *label = self.textLabel;
     CGRect ourBounds = self.contentView.bounds;
     UIEdgeInsets textLabelInset = self.textLabelInset;
     CGRect availableBounds = CGRectMake(textLabelInset.left,
                                         floorf(CGRectGetMidY(ourBounds) + textLabelInset.top),
                                         CGRectGetWidth(ourBounds) - textLabelInset.left - textLabelInset.right,
-                                        floorf(CGRectGetMidY(ourBounds) - textLabelInset.top - textLabelInset.bottom));
+                                        floorf(CGRectGetMidY(ourBounds)/2. - textLabelInset.top - textLabelInset.bottom));
+    
+    CGRect frame = availableBounds;
+    CGSize size = [label sizeThatFits:availableBounds.size];
+    size.width = MIN(size.width, availableBounds.size.width);
+    size.height = MIN(size.height, availableBounds.size.height);
+    frame.size = size;
+    return frame;
+}
+
+- (CGRect)frameForSubtextLabel {
+    UILabel *label = self.subtextLabel;
+    CGRect ourBounds = self.contentView.bounds;
+    UIEdgeInsets textLabelInset = self.textLabelInset;
+    UIEdgeInsets subtextLabelInset = self.subtextLabelInset;
+    CGRect textLabelFrame = [self frameForTextLabel];
+    CGRect availableBounds = CGRectMake(subtextLabelInset.left,
+                                        floorf(CGRectGetMaxY(textLabelFrame) + textLabelInset.bottom + subtextLabelInset.top),
+                                        CGRectGetWidth(ourBounds) - subtextLabelInset.left - subtextLabelInset.right,
+                                        CGRectGetMaxY(ourBounds) - CGRectGetMaxY(textLabelFrame) - subtextLabelInset.bottom - subtextLabelInset.top - textLabelInset.bottom);
     
     CGRect frame = availableBounds;
     CGSize size = [label sizeThatFits:availableBounds.size];

@@ -14,6 +14,7 @@
 		C097436E1BCDA2C90068E216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C097436C1BCDA2C90068E216 /* LaunchScreen.storyboard */; };
 		C09743791BCDA2C90068E216 /* FoodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743781BCDA2C90068E216 /* FoodyTests.m */; };
 		C09743841BCDA2C90068E216 /* FoodyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743831BCDA2C90068E216 /* FoodyUITests.m */; };
+		C40674691C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */; };
 		C489F87D1C6555390090A050 /* RecipesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F87C1C6555390090A050 /* RecipesListViewController.m */; };
 		C489F8801C655D750090A050 /* RecipeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F87F1C655D750090A050 /* RecipeCollectionViewCell.m */; };
 		C489F8831C65AC4E0090A050 /* RecipeFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F8821C65AC4E0090A050 /* RecipeFetchController.m */; };
@@ -100,6 +101,8 @@
 		C097437F1BCDA2C90068E216 /* FoodyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09743831BCDA2C90068E216 /* FoodyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodyUITests.m; sourceTree = "<group>"; };
 		C09743851BCDA2C90068E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C40674671C69595500D2C271 /* FeaturedRecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedRecipeCollectionViewCell.h; sourceTree = "<group>"; };
+		C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedRecipeCollectionViewCell.m; sourceTree = "<group>"; };
 		C489F87B1C6555390090A050 /* RecipesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesListViewController.h; sourceTree = "<group>"; };
 		C489F87C1C6555390090A050 /* RecipesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesListViewController.m; sourceTree = "<group>"; };
 		C489F87E1C655D750090A050 /* RecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				C4CC8CE91C534C9700FACF81 /* RecipeView.m */,
 				C489F87E1C655D750090A050 /* RecipeCollectionViewCell.h */,
 				C489F87F1C655D750090A050 /* RecipeCollectionViewCell.m */,
+				C40674671C69595500D2C271 /* FeaturedRecipeCollectionViewCell.h */,
+				C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				C4CC8D071C55671F00FACF81 /* Foody.xcdatamodeld in Sources */,
 				C4FA32231C52B19F001902EB /* CategoriesTableViewController.m in Sources */,
 				C4CC8D7F1C580C8A00FACF81 /* ModelMO.m in Sources */,
+				C40674691C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m in Sources */,
 				C4CC8D6B1C55D00200FACF81 /* CoreDataLocalStore.m in Sources */,
 				C4CC8D601C55CC2F00FACF81 /* _RecipeMO.m in Sources */,
 				C4CC8D5D1C55CC2F00FACF81 /* _RecipeCategoryMO.m in Sources */,

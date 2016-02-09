@@ -12,5 +12,7 @@
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign, nonatomic) UIEdgeInsets textLabelInset;
+@property (strong, nonatomic) UILabel *subtextLabel;
+@property (assign, nonatomic) UIEdgeInsets subtextLabelInset;
 - (void)setImage:(UIImage *)image;
 @end
