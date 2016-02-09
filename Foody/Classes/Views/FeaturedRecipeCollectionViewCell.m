@@ -7,6 +7,7 @@
 //
 
 #import "FeaturedRecipeCollectionViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RecipeCollectionViewCell()
 - (CGRect)frameForImageView;
@@ -15,6 +16,7 @@
 @end
 
 @interface FeaturedRecipeCollectionViewCell(){
+    UIView *_gradientView;
     CAGradientLayer *_imageGradientLayer;
 }
 
@@ -24,12 +26,16 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        UIView *gradientView = [[UIView alloc] initWithFrame:frame];
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame= frame;
-        gradientLayer.colors = @[(id)[UIColor whiteColor].CGColor,
-                                 (id)[UIColor blackColor].CGColor];
+        gradientLayer.colors = @[(id)[UIColor clearColor].CGColor,
+                                 (id)[UIColor colorWithWhite:0. alpha:0.66].CGColor];
+        gradientLayer.locations = @[@(0.5), @(1.)];
         _imageGradientLayer = gradientLayer;
-        self.imageView.layer.mask = gradientLayer;
+        [gradientView.layer insertSublayer:gradientLayer atIndex:0];
+        _gradientView = gradientView;
+        [self.contentView insertSubview:gradientView aboveSubview:self.imageView];
         
         UILabel *textLabel = self.textLabel;
         textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:24.];
@@ -47,14 +53,10 @@
 }
 
 - (void)layoutSubviews {
-    UIImageView *imageView = self.imageView;
-    CGRect originalImageFrame = imageView.frame;
     [super layoutSubviews];
-    CGRect newImageFrame = imageView.frame;
-    if (CGRectEqualToRect(originalImageFrame, newImageFrame) == NO) {
-        CAGradientLayer *gradientLayer = _imageGradientLayer;
-        gradientLayer.frame = newImageFrame;
-    }
+    UIImageView *imageView = self.imageView;
+    _gradientView.frame = imageView.frame;
+    _imageGradientLayer.frame = imageView.frame;
 }
 
 - (CGRect)frameForImageView {
