@@ -27,6 +27,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="8PU-mi-YOm" kind="show" identifier="showRecipe" id="JBz-ky-Pdm"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -88,9 +91,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="8PU-mi-YOm" kind="show" identifier="SelectRecipe" id="nQ3-gp-7Ea"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dK-DP-0RF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2064" y="633"/>
+            <point key="canvasLocation" x="1370" y="633"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2jU-RO-3sI">

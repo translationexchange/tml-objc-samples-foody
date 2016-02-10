@@ -9,6 +9,7 @@
 #import "RecipeViewController.h"
 #import "Recipe.h"
 #import "RecipeView.h"
+#import "CoreDataLocalStore.h"
 
 @interface RecipeViewController ()
 @end
@@ -25,15 +26,24 @@
     return (RecipeView *)self.view;
 }
 
-- (void)setRecipe:(Recipe *)recipe {
-    if (_recipe == recipe
-        || [_recipe isEqualToRecipe:recipe] == YES) {
+- (void)setRecipeID:(NSInteger)recipeID {
+    if (_recipeID == recipeID) {
         return;
     }
-    _recipe = recipe;
+    _recipeID = recipeID;
     if (self.isViewLoaded == YES) {
         [self update];
     }
+}
+
+- (RecipeMO *)recipe {
+    CoreDataLocalStore *localStore = [CoreDataLocalStore threadSafeLocalStore];
+    __block RecipeMO *recipe;
+    NSInteger recipeID = self.recipeID;
+    [localStore performBlockAndWait:^{
+        recipe = [localStore recipeWithID:@(recipeID)];
+    }];
+    return recipe;
 }
 
 - (void)update {

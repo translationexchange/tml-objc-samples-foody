@@ -10,7 +10,7 @@
 
 @interface RecipeViewController : UIViewController
 
-@property (strong, nonatomic) Recipe *recipe;
+@property (assign, nonatomic) NSInteger recipeID;
 @property (readonly, nonatomic) RecipeView *recipeView;
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RecipesListViewController : UICollectionViewController
-
+@property (readonly, nonatomic) NSIndexPath *selectedIndexPath;
 @end

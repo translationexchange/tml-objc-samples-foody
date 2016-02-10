@@ -6,15 +6,17 @@
 //  Copyright © 2016 Translation Exchange, Inc. All rights reserved.
 //
 
-#import "RecipesListViewController.h"
-#import "RecipeCollectionViewCell.h"
-#import "FeaturedRecipeCollectionViewCell.h"
 #import "CoreDataLocalStore.h"
+#import "FeaturedRecipeCollectionViewCell.h"
+#import "RecipeCollectionViewCell.h"
+#import "RecipeViewController.h"
+#import "RecipesListViewController.h"
 
 #define FETCH_BRACKET 10
 
 @interface RecipesListViewController() <UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation RecipesListViewController
@@ -121,6 +123,29 @@
     });
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedIndexPath = indexPath;
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"showRecipe" sender:cell];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = self.selectedIndexPath;
+    if (indexPath == nil) {
+        return;
+    }
+    RecipeMO *recipe = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if (recipe == nil) {
+        return;
+    }
+    
+    RecipeViewController *viewController = (RecipeViewController *)[segue destinationViewController];
+    viewController.recipeID = recipe.uidValue;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

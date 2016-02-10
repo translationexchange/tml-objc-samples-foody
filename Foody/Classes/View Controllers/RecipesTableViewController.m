@@ -112,7 +112,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     }
     
     RecipeViewController *viewController = (RecipeViewController *)[segue destinationViewController];
-    viewController.recipe = recipe;
+    viewController.recipeID = recipe.uid;
 }
 - (void)showRecipe:(Recipe *)recipe {
     UINavigationController *recipeViewController = nil;
