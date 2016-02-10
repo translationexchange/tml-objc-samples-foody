@@ -7,7 +7,6 @@
 //
 
 #import "RecipeViewController.h"
-#import "Recipe.h"
 #import "RecipeView.h"
 #import "CoreDataLocalStore.h"
 
@@ -47,7 +46,7 @@
 }
 
 - (void)update {
-    Recipe *recipe = self.recipe;
+    RecipeMO *recipe = self.recipe;
     RecipeView *view = self.recipeView;
     view.nameLabel.text = recipe.name;
     
