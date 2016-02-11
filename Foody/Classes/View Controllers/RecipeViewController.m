@@ -70,7 +70,7 @@
         self.textLabel = label;
         [self addSubview:label];
         
-        self.padding = 12.;
+        self.padding = 2.;
         self.color = LIGHT_GRAY_COLOR;
         self.backgroundColor = [UIColor clearColor];
         self.filled = YES;
@@ -126,6 +126,11 @@
     }
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize fitSize = [self.textLabel sizeThatFits:size];
+    return fitSize;
+}
+
 @end
 
 /**
@@ -133,7 +138,8 @@
  */
 @interface RecipeDescriptionCell : UITableViewCell
 @property (strong, nonatomic) BulletView *bulletView;
-@property (assign, nonatomic) CGFloat leftPadding;
+@property (assign, nonatomic) UIEdgeInsets bulletInsets;
+@property (assign, nonatomic) UIEdgeInsets contentInsets;
 @end
 
 @implementation RecipeDescriptionCell
@@ -146,12 +152,14 @@
         textLabel.font = [UIFont fontWithName:@"Helvetica" size:12.];
         textLabel.textColor = DARKER_GRAY_COLOR;
         self.backgroundColor = [UIColor clearColor];
+        textLabel.numberOfLines = 0;
         
-        CGRect ourBounds = self.bounds;
-        BulletView *bulletView = [[BulletView alloc] initWithFrame:ourBounds];
+        BulletView *bulletView = [[BulletView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         self.bulletView = bulletView;
-        self.leftPadding = 4.;
+        self.bulletInsets = UIEdgeInsetsMake(8., 8., 8., 4.);
         self.accessoryView = bulletView;
+        
+        self.contentInsets = UIEdgeInsetsMake(8., 0., 8., 8.);
     }
     return self;
 }
@@ -165,19 +173,21 @@
 
 - (CGRect)frameForBulletView {
     CGRect frame = self.bulletView.frame;
-    CGRect ourBounds = self.bounds;
-    CGFloat height = CGRectGetHeight(ourBounds);
-    frame.size = CGSizeMake(height, height);
-    frame.origin.x = self.leftPadding;
-    frame.origin.y = 0;
+    UIEdgeInsets inset = self.bulletInsets;
+    frame.origin.x = inset.left;
+    frame.origin.y = inset.top;
     return frame;
 }
 
 - (CGRect)frameForContentView {
     CGRect frame = self.contentView.frame;
     CGRect ourBounds = self.bounds;
-    frame.origin.x = CGRectGetHeight(ourBounds);
-    frame.size.width = CGRectGetWidth(ourBounds) - frame.origin.x - self.leftPadding;
+    UIEdgeInsets bulletInsets = self.bulletInsets;
+    UIEdgeInsets contentInsets = self.contentInsets;
+    frame.origin.x = CGRectGetWidth(self.bulletView.bounds) + bulletInsets.left + bulletInsets.right + contentInsets.left;
+    frame.origin.y = contentInsets.top;
+    frame.size.width = CGRectGetWidth(ourBounds) - frame.origin.x - contentInsets.right;
+    frame.size.height = CGRectGetHeight(ourBounds)- contentInsets.top - contentInsets.bottom;
     return frame;
 }
 
@@ -193,6 +203,23 @@
     frame.size = fitSize;
     return frame;
 }
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    UIEdgeInsets bulletInsets = self.bulletInsets;
+    UIEdgeInsets contentInsets = self.contentInsets;
+    BulletView *bulletView = self.bulletView;
+    
+    CGFloat widthForTitleLabel = size.width - CGRectGetWidth(bulletView.bounds) - bulletInsets.left - bulletInsets.right - contentInsets.left - contentInsets.right;
+    CGFloat heightForTitleLabel = size.height - MAX(CGRectGetHeight(bulletView.bounds) + bulletInsets.top + bulletInsets.bottom, contentInsets.top + contentInsets.bottom);
+    
+    UILabel *textLabel = self.textLabel;
+    CGSize labelFitSize = [textLabel sizeThatFits:CGSizeMake(widthForTitleLabel, heightForTitleLabel)];
+    
+    CGSize boundingSize = CGSizeMake(size.width, MAX(CGRectGetHeight(bulletView.bounds) + bulletInsets.top + bulletInsets.bottom
+                                                     , labelFitSize.height + contentInsets.top + contentInsets.bottom));
+    return boundingSize;
+}
+
 @end
 
 
@@ -462,7 +489,13 @@
     CGFloat height = UITableViewAutomaticDimension;
     if (indexPath.section == 0) {
         CGRect ourBounds = self.view.bounds;
-        height = CGRectGetHeight(ourBounds)/2.;
+        height = CGRectGetHeight(ourBounds)/3.;
+    }
+    else {
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        CGSize fitSize = [cell sizeThatFits:tableView.bounds.size];
+        height = fitSize.height;
     }
     return height;
 }
@@ -509,7 +542,7 @@
         RecipeDirectionMO *direction = [[[recipe directions] filteredOrderedSetUsingPredicate:predicate] firstObject];
         RecipeDirectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecipeDirectionCell class])];
         cell.textLabel.text = direction.directionDescription;
-        cell.bulletView.textLabel.text = [NSString stringWithFormat:@"%@", direction.index];
+        cell.bulletView.textLabel.text = [NSString stringWithFormat:@"%i", direction.indexValue + 1];
         return cell;
     }
     return nil;

@@ -65,8 +65,8 @@
     if (_style == RecipeTitledImageViewLargeStyle) {
         titleSize = 24.;
         subtitleSize = 14.;
-        titleInset = UIEdgeInsetsMake(0, 16, 8, 16);
-        subtitleInset = UIEdgeInsetsMake(8, 16, 16, 16);
+        titleInset = UIEdgeInsetsMake(0, 16, 4, 16);
+        subtitleInset = UIEdgeInsetsMake(4, 16, 16, 16);
     }
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:titleSize];
     self.subtitleLabel.font = [UIFont fontWithName:@"Helvetica" size:subtitleSize];
