@@ -36,6 +36,7 @@
         titledImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.titledImageView = titledImageView;
         [self.contentView addSubview:titledImageView];
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -207,6 +208,7 @@
       forCellReuseIdentifier:NSStringFromClass([RecipeIngredientCell class])];
     [tableView registerClass:[RecipeDirectionCell class]
       forCellReuseIdentifier:NSStringFromClass([RecipeDirectionCell class])];
+    
     [tableView reloadData];
 }
 
