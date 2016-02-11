@@ -18,6 +18,7 @@
 #define LIGHT_GRAY_COLOR [UIColor colorWithWhite:0.966 alpha:1.]
 #define DARK_GRAY_COLOR [UIColor colorWithWhite:0.66 alpha:1.]
 #define DARKER_GRAY_COLOR [UIColor colorWithWhite:0.33 alpha:1.]
+#define BORDEAUX_COLOR [UIColor colorWithRed:1. green:0. blue:0. alpha:0.22]
 
 /**
  *  RecipeImageCell
@@ -55,18 +56,52 @@
 @property (assign, nonatomic) CGFloat padding;
 @property (assign, nonatomic) BOOL filled;
 @property (assign, nonatomic) CGFloat strokeWidth;
+@property (strong, nonatomic) UILabel *textLabel;
 @end
 
 @implementation BulletView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        UILabel *label = [[UILabel alloc] initWithFrame:frame];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont fontWithName:@"Helvetica" size:10.];
+        self.textLabel = label;
+        [self addSubview:label];
+        
         self.padding = 12.;
         self.color = LIGHT_GRAY_COLOR;
         self.backgroundColor = [UIColor clearColor];
         self.filled = YES;
+        self.strokeWidth = 1.;
     }
     return self;
+}
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    self.textLabel.textColor = color;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.textLabel.frame = [self frameForTextLabel];
+}
+
+- (CGRect)frameForTextLabel {
+    UILabel *label = self.textLabel;
+    CGRect frame = label.frame;
+    CGRect ourBounds = self.bounds;
+    CGFloat padding = self.padding;
+    ourBounds = CGRectInset(ourBounds, padding, padding);
+    CGFloat min = MIN(CGRectGetWidth(ourBounds), CGRectGetHeight(ourBounds));
+    ourBounds.size = CGSizeMake(min, min);
+    CGSize fitSize = [label sizeThatFits:ourBounds.size];
+    frame.size = CGSizeMake(MIN(fitSize.width, ourBounds.size.width), MIN(fitSize.height, ourBounds.size.height));
+    frame.origin.x = floorf(CGRectGetMidX(ourBounds) - frame.size.width/2.);
+    frame.origin.y = floorf(CGRectGetMidY(ourBounds) - frame.size.height/2.);
+    return frame;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -97,6 +132,8 @@
  * RecipeDescriptionCell
  */
 @interface RecipeDescriptionCell : UITableViewCell
+@property (strong, nonatomic) BulletView *bulletView;
+@property (assign, nonatomic) CGFloat leftPadding;
 @end
 
 @implementation RecipeDescriptionCell
@@ -109,25 +146,7 @@
         textLabel.font = [UIFont fontWithName:@"Helvetica" size:12.];
         textLabel.textColor = DARKER_GRAY_COLOR;
         self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
-}
-@end
-
-
-/**
- *  RecipeIngredientCell
- */
-@interface RecipeIngredientCell : RecipeDescriptionCell
-@property (strong, nonatomic) BulletView *bulletView;
-@property (assign, nonatomic) CGFloat leftPadding;
-@end
-
-@implementation RecipeIngredientCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
         CGRect ourBounds = self.bounds;
         BulletView *bulletView = [[BulletView alloc] initWithFrame:ourBounds];
         self.bulletView = bulletView;
@@ -178,15 +197,38 @@
 
 
 /**
+ *  RecipeIngredientCell
+ */
+@interface RecipeIngredientCell : RecipeDescriptionCell
+@end
+
+@implementation RecipeIngredientCell
+@end
+
+
+/**
  *  RecipeDirectionCell
  */
 @interface RecipeDirectionCell : RecipeDescriptionCell
 @end
 
 @implementation RecipeDirectionCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        BulletView *bulletView = self.bulletView;
+        bulletView.color = BORDEAUX_COLOR;
+        bulletView.filled = NO;
+    }
+    return self;
+}
 @end
 
 
+/**
+ *  RecipeViewController
+ */
 @interface RecipeViewController () {
     NSInteger _recipeID;
 }
@@ -467,6 +509,7 @@
         RecipeDirectionMO *direction = [[[recipe directions] filteredOrderedSetUsingPredicate:predicate] firstObject];
         RecipeDirectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecipeDirectionCell class])];
         cell.textLabel.text = direction.directionDescription;
+        cell.bulletView.textLabel.text = [NSString stringWithFormat:@"%@", direction.index];
         return cell;
     }
     return nil;
