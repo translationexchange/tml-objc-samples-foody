@@ -49,6 +49,7 @@
         dispatch_semaphore_signal(semaphore);
     });
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    _threadSafeLocalStore = localStore;
     return localStore;
 }
 
