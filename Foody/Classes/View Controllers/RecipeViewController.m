@@ -15,6 +15,9 @@
 #import "RecipeTitledImageView.h"
 #import <TMLKit/TMLAPISerializer.h>
 
+#define LIGHT_GRAY_COLOR [UIColor colorWithWhite:0.966 alpha:1.]
+#define DARK_GRAY_COLOR [UIColor colorWithWhite:0.66 alpha:1.]
+#define DARKER_GRAY_COLOR [UIColor colorWithWhite:0.33 alpha:1.]
 
 /**
  *  RecipeImageCell
@@ -43,18 +46,68 @@
 }
 @end
 
-
 /**
- *  RecipeIngredientCell
+ *  Bullet View is just a shaded circle;
  */
-@interface RecipeIngredientCell : UITableViewCell
+@interface BulletView : UIView
+@property (strong, nonatomic) UIColor *color;
+@property (assign, nonatomic) CGFloat padding;
+@property (assign, nonatomic) BOOL filled;
+@property (assign, nonatomic) CGFloat strokeWidth;
 @end
 
-@implementation RecipeIngredientCell
+@implementation BulletView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.padding = 12.;
+        self.color = LIGHT_GRAY_COLOR;
+        self.backgroundColor = [UIColor clearColor];
+        self.filled = YES;
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGFloat padding = self.padding;
+    CGRect insetRect = CGRectInset(rect, padding, padding);
+    CGFloat min = MIN(CGRectGetWidth(insetRect), CGRectGetHeight(insetRect));
+    insetRect.size.width = min;
+    insetRect.size.height = min;
+    insetRect.origin = CGPointMake(floorf(CGRectGetMidX(rect) - (min/2.)),
+                                   floorf(CGRectGetMidY(rect) - (min/2.)));
+    CGContextClearRect(context, rect);
+    CGContextMoveToPoint(context, CGRectGetMinX(insetRect), CGRectGetMinY(insetRect));
+    if (self.filled == YES) {
+        CGContextSetFillColorWithColor(context, self.color.CGColor);
+        CGContextFillEllipseInRect(context, insetRect);
+    }
+    else {
+        CGContextSetLineWidth(context, self.strokeWidth);
+        CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+        CGContextStrokeEllipseInRect(context, insetRect);
+    }
+}
+
+@end
+
+/**
+ * RecipeDescriptionCell
+ */
+@interface RecipeDescriptionCell : UITableViewCell
+@end
+
+@implementation RecipeDescriptionCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = LIGHT_GRAY_COLOR;
+        UILabel *textLabel = self.textLabel;
+        textLabel.font = [UIFont fontWithName:@"Helvetica" size:12.];
+        textLabel.textColor = DARKER_GRAY_COLOR;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -62,10 +115,73 @@
 
 
 /**
+ *  RecipeIngredientCell
+ */
+@interface RecipeIngredientCell : RecipeDescriptionCell
+@property (strong, nonatomic) BulletView *bulletView;
+@property (assign, nonatomic) CGFloat leftPadding;
+@end
+
+@implementation RecipeIngredientCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        CGRect ourBounds = self.bounds;
+        BulletView *bulletView = [[BulletView alloc] initWithFrame:ourBounds];
+        self.bulletView = bulletView;
+        self.leftPadding = 4.;
+        self.accessoryView = bulletView;
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.bulletView.frame = [self frameForBulletView];
+    self.contentView.frame = [self frameForContentView];
+    self.textLabel.frame = [self frameForTextLabel];
+}
+
+- (CGRect)frameForBulletView {
+    CGRect frame = self.bulletView.frame;
+    CGRect ourBounds = self.bounds;
+    CGFloat height = CGRectGetHeight(ourBounds);
+    frame.size = CGSizeMake(height, height);
+    frame.origin.x = self.leftPadding;
+    frame.origin.y = 0;
+    return frame;
+}
+
+- (CGRect)frameForContentView {
+    CGRect frame = self.contentView.frame;
+    CGRect ourBounds = self.bounds;
+    frame.origin.x = CGRectGetHeight(ourBounds);
+    frame.size.width = CGRectGetWidth(ourBounds) - frame.origin.x - self.leftPadding;
+    return frame;
+}
+
+- (CGRect)frameForTextLabel {
+    UILabel *label = self.textLabel;
+    CGRect frame = label.frame;
+    CGRect ourBounds = self.contentView.bounds;
+    CGFloat ourLeftPadding = 4.;
+    ourBounds = CGRectInset(ourBounds, ourLeftPadding, 0);
+    CGSize fitSize = [label sizeThatFits:ourBounds.size];
+    frame.origin.x = ourLeftPadding;
+    frame.origin.y = floorf(CGRectGetMidY(ourBounds) - fitSize.height/2.);
+    frame.size = fitSize;
+    return frame;
+}
+@end
+
+
+/**
  *  RecipeDirectionCell
  */
-@interface RecipeDirectionCell : UITableViewCell
+@interface RecipeDirectionCell : RecipeDescriptionCell
 @end
+
 @implementation RecipeDirectionCell
 @end
 
@@ -362,7 +478,8 @@ willDisplayHeaderView:(UIView *)view
         UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
         headerView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:12.];
         headerView.textLabel.text = [headerView.textLabel.text uppercaseString];
-        headerView.textLabel.textColor = [UIColor colorWithWhite:0.66 alpha:1.];
+        headerView.textLabel.textColor = DARKER_GRAY_COLOR;
+        headerView.backgroundColor = LIGHT_GRAY_COLOR;
     }
 }
 
