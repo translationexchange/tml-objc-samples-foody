@@ -101,10 +101,10 @@ const struct RecipeMORelationships RecipeMORelationships = {
 
 @dynamic ingredients;
 
-- (NSMutableSet*)ingredientsSet {
+- (NSMutableOrderedSet*)ingredientsSet {
 	[self willAccessValueForKey:@"ingredients"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"ingredients"];
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"ingredients"];
 
 	[self didAccessValueForKey:@"ingredients"];
 	return result;
@@ -169,6 +169,66 @@ const struct RecipeMORelationships RecipeMORelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"directions"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"directions"];
+}
+@end
+
+@implementation _RecipeMO (IngredientsCoreDataGeneratedAccessors)
+- (void)addIngredients:(NSOrderedSet*)value_ {
+	[self.ingredientsSet unionOrderedSet:value_];
+}
+- (void)removeIngredients:(NSOrderedSet*)value_ {
+	[self.ingredientsSet minusOrderedSet:value_];
+}
+- (void)addIngredientsObject:(RecipeIngredientMO*)value_ {
+	[self.ingredientsSet addObject:value_];
+}
+- (void)removeIngredientsObject:(RecipeIngredientMO*)value_ {
+	[self.ingredientsSet removeObject:value_];
+}
+- (void)insertObject:(RecipeIngredientMO*)value inIngredientsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"ingredients"];
+}
+- (void)removeObjectFromIngredientsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"ingredients"];
+}
+- (void)insertIngredients:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"ingredients"];
+}
+- (void)removeIngredientsAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"ingredients"];
+}
+- (void)replaceObjectInIngredientsAtIndex:(NSUInteger)idx withObject:(RecipeIngredientMO*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"ingredients"];
+}
+- (void)replaceIngredientsAtIndexes:(NSIndexSet *)indexes withIngredients:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"ingredients"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self ingredients]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"ingredients"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"ingredients"];
 }
 @end
 

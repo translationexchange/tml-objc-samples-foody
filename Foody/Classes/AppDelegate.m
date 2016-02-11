@@ -58,7 +58,7 @@
         splashImageView.hidden = NO;
         [window setRootViewController:splashViewController];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.33 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.66 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
             UIViewController *appViewController = [mainStoryBoard instantiateInitialViewController];
             [window setRootViewController:appViewController];

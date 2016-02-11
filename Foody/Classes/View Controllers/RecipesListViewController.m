@@ -145,7 +145,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
     }
     
     RecipeViewController *viewController = (RecipeViewController *)[segue destinationViewController];
-    viewController.recipeID = recipe.uidValue;
+    viewController.recipe = recipe;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

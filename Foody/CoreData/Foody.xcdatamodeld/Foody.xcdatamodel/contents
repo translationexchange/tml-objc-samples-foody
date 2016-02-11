@@ -23,7 +23,7 @@
         <attribute name="recipeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeCategory" inverseName="recipes" inverseEntity="RecipeCategory" syncable="YES"/>
         <relationship name="directions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipeDirection" inverseName="recipe" inverseEntity="RecipeDirection" syncable="YES"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecipeIngredient" inverseName="recipe" inverseEntity="RecipeIngredient" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipeIngredient" inverseName="recipe" inverseEntity="RecipeIngredient" syncable="YES"/>
     </entity>
     <entity name="RecipeCategory" representedClassName="RecipeCategoryMO" parentEntity="Model" syncable="YES">
         <attribute name="featuredIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>

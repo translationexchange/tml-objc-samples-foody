@@ -73,9 +73,9 @@ extern const struct RecipeMORelationships {
 
 - (NSMutableOrderedSet*)directionsSet;
 
-@property (nonatomic, strong) NSSet *ingredients;
+@property (nonatomic, strong) NSOrderedSet *ingredients;
 
-- (NSMutableSet*)ingredientsSet;
+- (NSMutableOrderedSet*)ingredientsSet;
 
 @end
 
@@ -95,10 +95,17 @@ extern const struct RecipeMORelationships {
 @end
 
 @interface _RecipeMO (IngredientsCoreDataGeneratedAccessors)
-- (void)addIngredients:(NSSet*)value_;
-- (void)removeIngredients:(NSSet*)value_;
+- (void)addIngredients:(NSOrderedSet*)value_;
+- (void)removeIngredients:(NSOrderedSet*)value_;
 - (void)addIngredientsObject:(RecipeIngredientMO*)value_;
 - (void)removeIngredientsObject:(RecipeIngredientMO*)value_;
+
+- (void)insertObject:(RecipeIngredientMO*)value inIngredientsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromIngredientsAtIndex:(NSUInteger)idx;
+- (void)insertIngredients:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeIngredientsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInIngredientsAtIndex:(NSUInteger)idx withObject:(RecipeIngredientMO*)value;
+- (void)replaceIngredientsAtIndexes:(NSIndexSet *)indexes withIngredients:(NSArray *)values;
 
 @end
 
@@ -134,7 +141,7 @@ extern const struct RecipeMORelationships {
 - (NSMutableOrderedSet*)primitiveDirections;
 - (void)setPrimitiveDirections:(NSMutableOrderedSet*)value;
 
-- (NSMutableSet*)primitiveIngredients;
-- (void)setPrimitiveIngredients:(NSMutableSet*)value;
+- (NSMutableOrderedSet*)primitiveIngredients;
+- (void)setPrimitiveIngredients:(NSMutableOrderedSet*)value;
 
 @end

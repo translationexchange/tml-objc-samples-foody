@@ -6,11 +6,10 @@
 //  Copyright © 2016 Translation Exchange, Inc. All rights reserved.
 //
 
-@class Recipe, RecipeView;
+@class RecipeMO, RecipeView;
 
-@interface RecipeViewController : UIViewController
+@interface RecipeViewController : UITableViewController
 
-@property (assign, nonatomic) NSInteger recipeID;
-@property (readonly, nonatomic) RecipeView *recipeView;
+@property (strong, nonatomic) RecipeMO *recipe;
 
 @end
