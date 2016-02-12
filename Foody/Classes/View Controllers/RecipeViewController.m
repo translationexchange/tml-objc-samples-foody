@@ -278,6 +278,7 @@
     [tableView registerClass:[RecipeDirectionCell class]
       forCellReuseIdentifier:NSStringFromClass([RecipeDirectionCell class])];
     
+    tableView.allowsSelection = NO;
     [tableView reloadData];
 }
 
