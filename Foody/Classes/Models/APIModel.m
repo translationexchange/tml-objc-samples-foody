@@ -24,6 +24,12 @@ NSString * const APIModel_RecipeIDPropertyName = @"recipe_id";
 
 @implementation APIModel
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [self init];
+    [self decodeWithCoder:aDecoder];
+    return self;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     APIModel *copy = [[[self class] alloc] init];
     copy.uid = self.uid;

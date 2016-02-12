@@ -6,8 +6,6 @@
 //  Copyright © 2016 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <TMLKit/TMLKit.h>
-
 extern NSString * const APIModel_DescriptionPropertyName;
 extern NSString * const APIModel_FeaturedIndexPropertyName;
 extern NSString * const APIModel_IDPropertyName;
@@ -22,8 +20,7 @@ extern NSString * const APIModel_QuantityPropertyName;
 extern NSString * const APIModel_CategoryIDPropertyName;
 extern NSString * const APIModel_RecipeIDPropertyName;
 
-@interface APIModel : TMLModel
-
+@interface APIModel : NSObject <NSCopying,NSCoding>
 @property (assign, nonatomic) NSInteger uid;
-
+- (void)decodeWithCoder:(NSCoder *)aDecoder;
 @end

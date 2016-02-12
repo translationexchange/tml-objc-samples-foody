@@ -13,7 +13,7 @@
 #import "RecipeViewController.h"
 #import "RecipeDirection.h"
 #import "RecipeTitledImageView.h"
-#import <TMLKit/TMLAPISerializer.h>
+#import "APISerializer.h"
 
 #define LIGHT_GRAY_COLOR [UIColor colorWithWhite:0.966 alpha:1.]
 #define DARK_GRAY_COLOR [UIColor colorWithWhite:0.66 alpha:1.]
@@ -313,7 +313,7 @@
                     self.imageView.image = [UIImage imageWithData:data];
                 }
                 else {
-                    TMLWarn(@"Could not load image");
+                    AppWarn(@"Could not load image");
                 }
             });
         });
@@ -384,7 +384,7 @@
 - (void)fetchDirections {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     APIClient *apiClient = appDelegate.apiClient;
-    [apiClient directionsForRecipeWithID:_recipeID parameters:nil completion:^(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error) {
+    [apiClient directionsForRecipeWithID:_recipeID parameters:nil completion:^(APIResponse *apiResponse, NSArray *directions, NSError *error) {
         if ([apiResponse isSuccessfulResponse] == YES) {
             NSArray *results = [self sortOptionallyIndexedModels:apiResponse.results];
             results = [self indexOrderedArrayOfModels:results];
@@ -392,7 +392,7 @@
                 [self updateRecipeWithBlock:^(RecipeMO *recipe, CoreDataLocalStore *localStore) {
                     for (NSDictionary *info in results) {
                         RecipeDirectionMO *newDirection = [localStore createDirection];
-                        [newDirection decodeWithCoder:[[TMLAPISerializer alloc] initForReadingWithData:[TMLAPISerializer serializeObject:info]]];
+                        [newDirection decodeWithCoder:[[APISerializer alloc] initForReadingWithData:[APISerializer serializeObject:info]]];
                         newDirection.recipe = recipe;
                         [recipe.directionsSet addObject:newDirection];
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -402,7 +402,7 @@
                 }];
             }
             else {
-                TMLWarn(@"No directions found for recipe with ID: %li", _recipeID);
+                AppWarn(@"No directions found for recipe with ID: %li", _recipeID);
             }
         }
     }];
@@ -411,7 +411,7 @@
 - (void)fetchIngredients {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     APIClient *apiClient = appDelegate.apiClient;
-    [apiClient ingredientsForRecipeWithID:_recipeID parameters:nil completion:^(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error) {
+    [apiClient ingredientsForRecipeWithID:_recipeID parameters:nil completion:^(APIResponse *apiResponse, NSArray *directions, NSError *error) {
         if ([apiResponse isSuccessfulResponse] == YES) {
             NSArray *results = [self sortOptionallyIndexedModels:apiResponse.results];
             results = [self indexOrderedArrayOfModels:results];
@@ -419,7 +419,7 @@
                 [self updateRecipeWithBlock:^(RecipeMO *recipe, CoreDataLocalStore *localStore) {
                     for (NSDictionary *info in results) {
                         RecipeIngredientMO *newIngredient = [localStore createIngredient];
-                        [newIngredient decodeWithCoder:[[TMLAPISerializer alloc] initForReadingWithData:[TMLAPISerializer serializeObject:info]]];
+                        [newIngredient decodeWithCoder:[[APISerializer alloc] initForReadingWithData:[APISerializer serializeObject:info]]];
                         newIngredient.recipe = recipe;
                         [recipe.ingredientsSet addObject:newIngredient];
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -429,7 +429,7 @@
                 }];
             }
             else {
-                TMLWarn(@"No ingredients found for recipe with ID: %li", _recipeID);
+                AppWarn(@"No ingredients found for recipe with ID: %li", _recipeID);
             }
         }
     }];
@@ -449,7 +449,7 @@
             NSError *saveError = nil;
             [localStore save:&saveError];
             if (saveError != nil) {
-                TMLError(@"Error updating recipe object: %@", saveError);
+                AppError(@"Error updating recipe object: %@", saveError);
             }
         }
     }];

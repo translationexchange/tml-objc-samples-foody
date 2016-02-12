@@ -41,7 +41,7 @@ NSString * const RecipeTableViewCellIdentifier = @"RecipeTableViewCell";
     if (_category) {
         [AppAPIClient recipesForCategoryWithID:_category.uid
                                     parameters:nil
-                                    completion:^(TMLAPIResponse *apiResponse, NSArray *newRecipes, NSError *error) {
+                                    completion:^(APIResponse *apiResponse, NSArray *newRecipes, NSError *error) {
                                         if (error == nil) {
                                             self.recipes = newRecipes;
                                             [self.refreshControl endRefreshing];

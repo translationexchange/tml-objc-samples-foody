@@ -28,68 +28,68 @@
  *  THE SOFTWARE.
  */
 
-#ifndef TMLLogger_h
-#define TMLLogger_h
+#ifndef AppLogger_h
+#define AppLogger_h
 
-#define TMLLogLevelError 0
-#define TMLLogLevelWarning 1
-#define TMLLogLevelInfo 2
-#define TMLLogLevelDebug 3
+#define AppLogLevelError 0
+#define AppLogLevelWarning 1
+#define AppLogLevelInfo 2
+#define AppLogLevelDebug 3
 
-typedef NSInteger TMLLogLevel;
+typedef NSInteger AppLogLevel;
 
-static inline void TMLLog(TMLLogLevel level, NSString *format, ...) {
+static inline void AppLog(AppLogLevel level, NSString *format, ...) {
     __block va_list arg_list;
     va_start (arg_list, format);
     NSString *formattedString = [[NSString alloc] initWithFormat:format arguments:arg_list];
     va_end(arg_list);
     NSString *levelString = nil;
     switch (level) {
-        case TMLLogLevelError:
+        case AppLogLevelError:
             levelString = @"Error";
             break;
-        case TMLLogLevelInfo:
+        case AppLogLevelInfo:
             levelString = @"Info";
             break;
-        case TMLLogLevelWarning:
+        case AppLogLevelWarning:
             levelString = @"Warning";
             break;
-        case TMLLogLevelDebug:
+        case AppLogLevelDebug:
             levelString = @"Debug";
             break;
         default:
             levelString = @"Unknown";
             break;
     }
-    NSLog(@"[TML %@] %@", levelString, formattedString);
+    NSLog(@"[App %@] %@", levelString, formattedString);
 }
 
-#if TML_DEBUG >= TMLLogLevelError
-#define TMLError(...) TMLLog(TMLLogLevelError, __VA_ARGS__)
+#if App_DEBUG >= AppLogLevelError
+#define AppError(...) AppLog(AppLogLevelError, __VA_ARGS__)
 #else
-#define TMLError(...)
+#define AppError(...)
 #endif
 
-#if TML_DEBUG >= TMLLogLevelWarning
-#define TMLWarn(...) TMLLog(TMLLogLevelWarning, __VA_ARGS__)
+#if App_DEBUG >= AppLogLevelWarning
+#define AppWarn(...) AppLog(AppLogLevelWarning, __VA_ARGS__)
 #else 
-#define TMLWarn(...)
+#define AppWarn(...)
 #endif
 
-#if TML_DEBUG >= TMLLogLevelInfo
-#define TMLInfo(...) TMLLog(TMLLogLevelInfo, __VA_ARGS__)
+#if App_DEBUG >= AppLogLevelInfo
+#define AppInfo(...) AppLog(AppLogLevelInfo, __VA_ARGS__)
 #else
-#define TMLInfo(...)
+#define AppInfo(...)
 #endif
 
-#if TML_DEBUG >= TMLLogLevelDebug
-#define TMLDebug(...) TMLLog(TMLLogLevelDebug, __VA_ARGS__)
+#if App_DEBUG >= AppLogLevelDebug
+#define AppDebug(...) AppLog(AppLogLevelDebug, __VA_ARGS__)
 #else
-#define TMLDebug(...)
+#define AppDebug(...)
 #endif
 
-#ifdef TML_MESSAGING_DEBUG
-#define MessagingDebug(...) TMLLog(__VA_ARGS__)
+#ifdef App_MESSAGING_DEBUG
+#define MessagingDebug(...) AppLog(__VA_ARGS__)
 #else
 #define MessagingDebug(...)
 #endif

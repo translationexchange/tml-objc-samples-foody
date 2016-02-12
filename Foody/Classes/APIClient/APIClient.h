@@ -6,47 +6,51 @@
 //  Copyright © 2015 Translation Exchange, Inc. All rights reserved.
 //
 
-// piggy backing off of TMLBasicAPIClient
-#import <TMLKit/TMLBasicAPIClient.h>
+#import "APIResponse.h"
 
 @class RecipeCategory, Recipe;
 
-@interface APIClient : TMLBasicAPIClient
+typedef void (^APIResponseHandler)(APIResponse *apiResponse, NSURLResponse *response, NSError *error);
+
+@interface APIClient : NSObject
+
+- (instancetype)initWithBaseURL:(NSURL *)baseURL;
+@property (strong, nonatomic) NSURL *baseURL;
 
 #pragma mark - Categories
 
 - (void)listCategories:(NSDictionary *)parameters
-            completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *categories, NSError *error))completion;
+            completion:(void(^)(APIResponse *apiResponse, NSArray *categories, NSError *error))completion;
 
 - (void)categoryWithID:(NSInteger)categoryID
             parameters:(NSDictionary *)parameters
-            completion:(void(^)(TMLAPIResponse *apiResponse, RecipeCategory *category, NSError *error))completion;
+            completion:(void(^)(APIResponse *apiResponse, RecipeCategory *category, NSError *error))completion;
 
 #pragma mark - Recipes
 
 - (void)listRecipes:(NSDictionary *)parameters
-         completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
+         completion:(void(^)(APIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
 
 - (void)recipesForCategoryWithID:(NSInteger)categoryID
                       parameters:(NSDictionary *)parameters
-                      completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
+                      completion:(void(^)(APIResponse *apiResponse, NSArray *recipes, NSError *error))completion;
 
 - (void)recipeWithID:(NSInteger)recipeID
           parameters:(NSDictionary *)parameters
-          completion:(void(^)(TMLAPIResponse *apiResponse, Recipe *recipe, NSError *error))completion;
+          completion:(void(^)(APIResponse *apiResponse, Recipe *recipe, NSError *error))completion;
 
 #pragma mark - Directions
 - (void)listDirections:(NSDictionary *)parameters
-            completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error))completion;
+            completion:(void(^)(APIResponse *apiResponse, NSArray *directions, NSError *error))completion;
 - (void)directionsForRecipeWithID:(NSInteger)recipeID
                        parameters:(NSDictionary *)parameters
-                       completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *directions, NSError *error))completion;
+                       completion:(void(^)(APIResponse *apiResponse, NSArray *directions, NSError *error))completion;
 
 #pragma mark - Ingredients
 - (void)listIngredients:(NSDictionary *)parameters
-             completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
+             completion:(void(^)(APIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
 - (void)ingredientsForRecipeWithID:(NSInteger)recipeID
                         parameters:(NSDictionary *)parameters
-                        completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
+                        completion:(void(^)(APIResponse *apiResponse, NSArray *ingredients, NSError *error))completion;
 
 @end

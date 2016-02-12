@@ -13,7 +13,7 @@
 #import "RecipeDirection.h"
 #import "RecipeIngredient.h"
 #import "CoreDataLocalStore.h"
-#import <TMLKit/TMLAPISerializer.h>
+#import "APISerializer.h"
 
 NSString * const CategoriesKey = @"Categories";
 NSString * const RecipesKey = @"Recipes";
@@ -40,7 +40,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 @implementation SyncEngine
 
 -(instancetype)init {
-    TMLRaiseAlternativeInstantiationMethod(@selector(initWithAPIClient:));
+    RaiseAlternativeInstantiationMethod(@selector(initWithAPIClient:));
     return nil;
 }
 
@@ -75,7 +75,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 
 - (void)signalSyncEvent:(SyncEngineEvent)event userInfo:(NSDictionary *)userInfo {
     if (event == SyncEngineStartEvent) {
-        [self fetchCategories:nil completion:^(TMLAPIResponse *apiResponse, NSArray *result, NSError *error) {
+        [self fetchCategories:nil completion:^(APIResponse *apiResponse, NSArray *result, NSError *error) {
             if (IsSuccessfullyFinishedResponse(apiResponse) == YES) {
                 [self signalSyncEvent:SyncEngineProgressEvent
                              userInfo:@{
@@ -87,7 +87,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
     else if (event == SyncEngineProgressEvent) {
         NSString *identifier = userInfo[SyncEngineProgressIdentifierKey];
         if ([CategoriesKey isEqualToString:identifier] == YES) {
-            [self fetchRecipes:nil completion:^(TMLAPIResponse *apiResponse, NSArray *result, NSError *error) {
+            [self fetchRecipes:nil completion:^(APIResponse *apiResponse, NSArray *result, NSError *error) {
                 if (IsSuccessfullyFinishedResponse(apiResponse) == YES) {
                     [self signalSyncEvent:SyncEngineProgressEvent
                                  userInfo:@{
@@ -104,7 +104,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 
 - (void)fetchWithSelector:(SEL)selector
                parameters:(NSDictionary *)parameters
-               completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *result, NSError *error))completion
+               completion:(void(^)(APIResponse *apiResponse, NSArray *result, NSError *error))completion
 {
     APIClient *apiClient = self.apiClient;
     _syncOperationCount++;
@@ -112,7 +112,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [apiClient performSelector:selector
                     withObject:parameters
-                    withObject:^(TMLAPIResponse *apiResponse, NSArray *result, NSError *error) {
+                    withObject:^(APIResponse *apiResponse, NSArray *result, NSError *error) {
                         if (error == nil) {
                             [self importAPIResult:result];
                         }
@@ -140,7 +140,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 }
 
 - (void)fetchCategories:(NSDictionary *)parameters
-            completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *categories, NSError *error))completion
+            completion:(void(^)(APIResponse *apiResponse, NSArray *categories, NSError *error))completion
 {
     [self fetchWithSelector:@selector(listCategories:completion:)
                  parameters:nil
@@ -148,7 +148,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 }
 
 - (void)fetchRecipes:(NSDictionary *)parameters
-          completion:(void(^)(TMLAPIResponse *apiResponse, NSArray *categories, NSError *error))completion{
+          completion:(void(^)(APIResponse *apiResponse, NSArray *categories, NSError *error))completion{
     [self fetchWithSelector:@selector(listRecipes:completion:)
                  parameters:nil
                  completion:completion];
@@ -191,7 +191,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 #pragma clang diagnostic pop
     }
     else {
-        TMLWarn(@"Don't know how to import %@", (targetClass != nil) ? NSStringFromClass(targetClass), targetClass);
+        AppWarn(@"Don't know how to import %@", (targetClass != nil) ? NSStringFromClass(targetClass), targetClass);
     }
 }
 
@@ -212,8 +212,8 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
             if (existingCategory == nil) {
                 existingCategory = [localStore createCategory];
             }
-            NSData *data = [TMLAPISerializer serializeObject:apiCategory];
-            [existingCategory decodeWithCoder:[[TMLAPISerializer alloc] initForReadingWithData:data]];
+            NSData *data = [APISerializer serializeObject:apiCategory];
+            [existingCategory decodeWithCoder:[[APISerializer alloc] initForReadingWithData:data]];
         }
         
         NSError *error = nil;
@@ -221,7 +221,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
             [localStore save:&error];
         }
         if (error != nil) {
-            TMLError(@"Error importing API categories: %@", error);
+            AppError(@"Error importing API categories: %@", error);
         }
     }];
 }
@@ -248,15 +248,15 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
         for (Recipe *apiRecipe in recipes) {
             RecipeCategoryMO *category = existingCategoryMap[@(apiRecipe.categoryID)];
             if (category == nil) {
-                TMLWarn(@"Tried to import Recipe associated with unknown category: %i", apiRecipe.categoryID);
+                AppWarn(@"Tried to import Recipe associated with unknown category: %i", apiRecipe.categoryID);
                 continue;
             }
             RecipeMO *existingRecipe = existingRecipesMap[@(apiRecipe.uid)];
             if (existingRecipe == nil) {
                 existingRecipe = [localStore createRecipe];
             }
-            NSData *data = [TMLAPISerializer serializeObject:apiRecipe];
-            [existingRecipe decodeWithCoder:[[TMLAPISerializer alloc] initForReadingWithData:data]];
+            NSData *data = [APISerializer serializeObject:apiRecipe];
+            [existingRecipe decodeWithCoder:[[APISerializer alloc] initForReadingWithData:data]];
             
             if (category.uidValue == apiRecipe.categoryID) {
                 [category.recipesSet addObject:existingRecipe];
@@ -268,7 +268,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
             [localStore save:&error];
         }
         if (error != nil) {
-            TMLError(@"Error importing API categories: %@", error);
+            AppError(@"Error importing API categories: %@", error);
         }
     }];
 }

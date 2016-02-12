@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5436D6184C0FC1FA2ED59389 /* libPods-Foody.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A04C5AEA344134457647D2 /* libPods-Foody.a */; };
 		C09743601BCDA2C90068E216 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C097435F1BCDA2C90068E216 /* main.m */; };
 		C09743691BCDA2C90068E216 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09743671BCDA2C90068E216 /* Main.storyboard */; };
 		C097436B1BCDA2C90068E216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C097436A1BCDA2C90068E216 /* Assets.xcassets */; };
@@ -15,6 +14,11 @@
 		C09743791BCDA2C90068E216 /* FoodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743781BCDA2C90068E216 /* FoodyTests.m */; };
 		C09743841BCDA2C90068E216 /* FoodyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09743831BCDA2C90068E216 /* FoodyUITests.m */; };
 		C40674691C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */; };
+		C4270D3F1C6D66F800F91674 /* APIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C4270D3E1C6D66F800F91674 /* APIResponse.m */; };
+		C4270D421C6D680700F91674 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C4270D411C6D680700F91674 /* NSObject+JSON.m */; };
+		C4270D451C6D68EE00F91674 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4270D441C6D68EE00F91674 /* JSONValueTransformer.m */; };
+		C4270D481C6D695200F91674 /* APISerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4270D471C6D695200F91674 /* APISerializer.m */; };
+		C4270D4B1C6D6A6300F91674 /* FoodyGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = C4270D4A1C6D6A6300F91674 /* FoodyGlobals.m */; };
 		C489F87D1C6555390090A050 /* RecipesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F87C1C6555390090A050 /* RecipesListViewController.m */; };
 		C489F8801C655D750090A050 /* RecipeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F87F1C655D750090A050 /* RecipeCollectionViewCell.m */; };
 		C489F8831C65AC4E0090A050 /* RecipeFetchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C489F8821C65AC4E0090A050 /* RecipeFetchController.m */; };
@@ -88,8 +92,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7E24106E7B1C7798D739AAEE /* Pods-Foody.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foody.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Foody/Pods-Foody.debug.xcconfig"; sourceTree = "<group>"; };
-		B75D8F26DD1E1CD319EF9FF4 /* Pods-Foody.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foody.release.xcconfig"; path = "Pods/Target Support Files/Pods-Foody/Pods-Foody.release.xcconfig"; sourceTree = "<group>"; };
 		C097435B1BCDA2C90068E216 /* Foody.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foody.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C097435F1BCDA2C90068E216 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C09743681BCDA2C90068E216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +106,17 @@
 		C09743851BCDA2C90068E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C40674671C69595500D2C271 /* FeaturedRecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedRecipeCollectionViewCell.h; sourceTree = "<group>"; };
 		C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedRecipeCollectionViewCell.m; sourceTree = "<group>"; };
+		C4270D3C1C6D651700F91674 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		C4270D3D1C6D66F800F91674 /* APIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIResponse.h; sourceTree = "<group>"; };
+		C4270D3E1C6D66F800F91674 /* APIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIResponse.m; sourceTree = "<group>"; };
+		C4270D401C6D680700F91674 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
+		C4270D411C6D680700F91674 /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
+		C4270D431C6D68EE00F91674 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
+		C4270D441C6D68EE00F91674 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
+		C4270D461C6D695200F91674 /* APISerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISerializer.h; sourceTree = "<group>"; };
+		C4270D471C6D695200F91674 /* APISerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISerializer.m; sourceTree = "<group>"; };
+		C4270D491C6D6A6300F91674 /* FoodyGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodyGlobals.h; sourceTree = "<group>"; };
+		C4270D4A1C6D6A6300F91674 /* FoodyGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodyGlobals.m; sourceTree = "<group>"; };
 		C489F87B1C6555390090A050 /* RecipesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesListViewController.h; sourceTree = "<group>"; };
 		C489F87C1C6555390090A050 /* RecipesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesListViewController.m; sourceTree = "<group>"; };
 		C489F87E1C655D750090A050 /* RecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -178,7 +191,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5436D6184C0FC1FA2ED59389 /* libPods-Foody.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +223,6 @@
 		3695B4D9B89772CF021B8ABE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7E24106E7B1C7798D739AAEE /* Pods-Foody.debug.xcconfig */,
-				B75D8F26DD1E1CD319EF9FF4 /* Pods-Foody.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -341,6 +351,7 @@
 		C4FA32051C52B19F001902EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C4270D3C1C6D651700F91674 /* Logger.h */,
 				C4CC8D651C55CDAC00FACF81 /* Sync Engine */,
 				C4FA322A1C52B2F4001902EB /* Views */,
 				C4FA32061C52B19F001902EB /* APIClient */,
@@ -350,6 +361,8 @@
 				C4FA32171C52B19F001902EB /* View Controllers */,
 				C4CC8D691C55D00200FACF81 /* CoreDataLocalStore.h */,
 				C4CC8D6A1C55D00200FACF81 /* CoreDataLocalStore.m */,
+				C4270D491C6D6A6300F91674 /* FoodyGlobals.h */,
+				C4270D4A1C6D6A6300F91674 /* FoodyGlobals.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -357,6 +370,14 @@
 		C4FA32061C52B19F001902EB /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
+				C4270D461C6D695200F91674 /* APISerializer.h */,
+				C4270D471C6D695200F91674 /* APISerializer.m */,
+				C4270D431C6D68EE00F91674 /* JSONValueTransformer.h */,
+				C4270D441C6D68EE00F91674 /* JSONValueTransformer.m */,
+				C4270D401C6D680700F91674 /* NSObject+JSON.h */,
+				C4270D411C6D680700F91674 /* NSObject+JSON.m */,
+				C4270D3D1C6D66F800F91674 /* APIResponse.h */,
+				C4270D3E1C6D66F800F91674 /* APIResponse.m */,
 				C4FA32071C52B19F001902EB /* APIClient.h */,
 				C4FA32081C52B19F001902EB /* APIClient.m */,
 			);
@@ -431,13 +452,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C09743881BCDA2C90068E216 /* Build configuration list for PBXNativeTarget "Foody" */;
 			buildPhases = (
-				4BEAF3BF67AC06C877206D9C /* Check Pods Manifest.lock */,
 				C09743571BCDA2C90068E216 /* Sources */,
 				C09743581BCDA2C90068E216 /* Frameworks */,
 				C09743591BCDA2C90068E216 /* Resources */,
 				C4CC8CF91C5484E900FACF81 /* CopyFiles */,
-				E5C11FA200564791A499C7A0 /* Embed Pods Frameworks */,
-				6E1A9C95E39C524FFB813C3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -555,54 +573,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4BEAF3BF67AC06C877206D9C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6E1A9C95E39C524FFB813C3F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Foody/Pods-Foody-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5C11FA200564791A499C7A0 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Foody/Pods-Foody-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C09743571BCDA2C90068E216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -613,8 +583,10 @@
 				C4CC8D7E1C580C8A00FACF81 /* _ModelMO.m in Sources */,
 				C4CC8D5E1C55CC2F00FACF81 /* _RecipeDirectionMO.m in Sources */,
 				C4FA321F1C52B19F001902EB /* RecipeCategory.m in Sources */,
+				C4270D481C6D695200F91674 /* APISerializer.m in Sources */,
 				C09743601BCDA2C90068E216 /* main.m in Sources */,
 				C4FA32221C52B19F001902EB /* Recipe.m in Sources */,
+				C4270D421C6D680700F91674 /* NSObject+JSON.m in Sources */,
 				C4FA321C1C52B19F001902EB /* APIClient.m in Sources */,
 				C4CC8D621C55CC2F00FACF81 /* RecipeDirectionMO.m in Sources */,
 				C4CC8D641C55CC2F00FACF81 /* RecipeMO.m in Sources */,
@@ -624,7 +596,10 @@
 				C4CC8D821C58481F00FACF81 /* APIModel.m in Sources */,
 				C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */,
 				C4CC8CE71C5341EE00FACF81 /* RecipeViewController.m in Sources */,
+				C4270D4B1C6D6A6300F91674 /* FoodyGlobals.m in Sources */,
+				C4270D451C6D68EE00F91674 /* JSONValueTransformer.m in Sources */,
 				C4CC8CEA1C534C9700FACF81 /* RecipeView.m in Sources */,
+				C4270D3F1C6D66F800F91674 /* APIResponse.m in Sources */,
 				C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */,
 				C4CC8D611C55CC2F00FACF81 /* RecipeCategoryMO.m in Sources */,
 				C489F8831C65AC4E0090A050 /* RecipeFetchController.m in Sources */,
@@ -777,7 +752,6 @@
 		};
 		C09743891BCDA2C90068E216 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E24106E7B1C7798D739AAEE /* Pods-Foody.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -792,7 +766,6 @@
 		};
 		C097438A1BCDA2C90068E216 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B75D8F26DD1E1CD319EF9FF4 /* Pods-Foody.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

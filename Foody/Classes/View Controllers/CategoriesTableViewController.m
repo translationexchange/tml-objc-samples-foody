@@ -133,7 +133,6 @@
 }
 
 - (void)mocChanged:(NSNotification *)aNotification {
-    NSDictionary *info = [aNotification userInfo];
     [self refreshTable];
 }
 

@@ -56,7 +56,7 @@
     self.fetchedResultsController = fetchController;
     NSError *error;
     if([fetchController performFetch:&error] == NO) {
-        TMLError(@"Error fetching recipes: %@", error);
+        AppError(@"Error fetching recipes: %@", error);
     }
 }
 
@@ -118,7 +118,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [cell setImage:[UIImage imageNamed:@"meal_placeholder"]];
             });
-            TMLError(@"Could not load image from: %@", imageURL);
+            AppError(@"Could not load image from: %@", imageURL);
         }
     });
     
