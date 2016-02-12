@@ -454,6 +454,27 @@
     }];
 }
 
+#pragma mark - Scrolling
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    UIEdgeInsets contentInset = scrollView.contentInset;
+    CGPoint contentOffset = scrollView.contentOffset;
+    if (contentOffset.y <= 0 - contentInset.top) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        RecipeImageCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if (cell == nil) {
+            return;
+        }
+        CGFloat delta = ABS(contentOffset.y) - contentInset.top;
+        CGFloat height = [self tableView:self.tableView heightForRowAtIndexPath:indexPath];
+        CGRect cellFrame = cell.frame;
+        cellFrame.size.height = height + delta;
+        cellFrame.origin.y = contentOffset.y + contentInset.top;
+        cell.frame = cellFrame;
+        CGFloat alpha = (delta == 0) ? 1 : 2/delta;
+        cell.titledImageView.gradientView.alpha = alpha;
+    }
+}
+
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -557,7 +578,7 @@ willDisplayHeaderView:(UIView *)view
         headerView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:12.];
         headerView.textLabel.text = [headerView.textLabel.text uppercaseString];
         headerView.textLabel.textColor = DARKER_GRAY_COLOR;
-        headerView.backgroundColor = LIGHT_GRAY_COLOR;
+        headerView.contentView.backgroundColor = LIGHT_GRAY_COLOR;
     }
 }
 
