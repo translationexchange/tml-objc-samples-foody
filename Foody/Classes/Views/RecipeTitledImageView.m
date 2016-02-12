@@ -73,11 +73,16 @@
     
     self.titleInsets = titleInset;
     self.subtitleInsets = subtitleInset;
+    [self setNeedsLayout];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _imageGradientLayer.frame = _gradientView.bounds;
+    CGRect ourBounds = self.bounds;
+    self.imageView.frame = ourBounds;
+    self.gradientView.frame = ourBounds;
+    _imageGradientLayer.frame = self.gradientView.layer.bounds;
+    [_imageGradientLayer setNeedsDisplay];
     self.subtitleLabel.frame = [self frameForSubtitleLabel];
     self.titleLabel.frame = [self frameForTitleLabel];
 }
@@ -97,8 +102,8 @@
     
     CGRect frame = label.frame;
     frame.size = fitSize;
-    frame.origin.x = ourBounds.origin.x;
-    frame.origin.y = CGRectGetMaxY(ourBounds) - fitSize.height;
+    frame.origin.x = floorf(ourBounds.origin.x);
+    frame.origin.y = floorf(CGRectGetMaxY(ourBounds) - fitSize.height);
     return frame;
 }
 
@@ -117,8 +122,8 @@
     CGSize fitSize = [label sizeThatFits:ourBounds.size];
     fitSize.width = CGRectGetWidth(ourBounds);
     frame.size = fitSize;
-    frame.origin.x = ourBounds.origin.x;
-    frame.origin.y = CGRectGetMinY(subtitleFrame) - subtitleInsets.top - titleInsets.bottom - fitSize.height;
+    frame.origin.x = floorf(ourBounds.origin.x);
+    frame.origin.y = floorf(CGRectGetMinY(subtitleFrame) - subtitleInsets.top - titleInsets.bottom - fitSize.height);
     return frame;
 }
 

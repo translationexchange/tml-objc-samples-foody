@@ -1,17 +1,15 @@
 //
-//  FeaturedRecipeCollectionViewCell.h
+//  RecipeCollectionViewCellProto.h
 //  Foody
 //
-//  Created by Pasha on 2/8/16.
+//  Created by Pasha on 2/11/16.
 //  Copyright © 2016 Translation Exchange, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "RecipeTitledImageView.h"
-#import "RecipeCollectionViewCellProto.h"
+#import <Foundation/Foundation.h>
 
-@interface FeaturedRecipeCollectionViewCell : UICollectionViewCell <RecipeCollectionViewCellProto>
-@property (readonly, nonatomic) RecipeTitledImageView *titledImageView;
+@protocol RecipeCollectionViewCellProto <NSObject>
+@required
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign, nonatomic) UIEdgeInsets textLabelInset;

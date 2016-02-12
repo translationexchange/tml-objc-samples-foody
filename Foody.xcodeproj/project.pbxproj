@@ -117,6 +117,7 @@
 		C4270D471C6D695200F91674 /* APISerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISerializer.m; sourceTree = "<group>"; };
 		C4270D491C6D6A6300F91674 /* FoodyGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodyGlobals.h; sourceTree = "<group>"; };
 		C4270D4A1C6D6A6300F91674 /* FoodyGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodyGlobals.m; sourceTree = "<group>"; };
+		C4270D4C1C6D8EBE00F91674 /* RecipeCollectionViewCellProto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionViewCellProto.h; sourceTree = "<group>"; };
 		C489F87B1C6555390090A050 /* RecipesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesListViewController.h; sourceTree = "<group>"; };
 		C489F87C1C6555390090A050 /* RecipesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesListViewController.m; sourceTree = "<group>"; };
 		C489F87E1C655D750090A050 /* RecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 				C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */,
 				C495F6321C6C172400E2A005 /* RecipeTitledImageView.h */,
 				C495F6331C6C172400E2A005 /* RecipeTitledImageView.m */,
+				C4270D4C1C6D8EBE00F91674 /* RecipeCollectionViewCellProto.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";

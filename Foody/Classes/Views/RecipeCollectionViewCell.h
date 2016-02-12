@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecipeCollectionViewCellProto.h"
 
-@interface RecipeCollectionViewCell : UICollectionViewCell
+@interface RecipeCollectionViewCell : UICollectionViewCell <RecipeCollectionViewCellProto>
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign, nonatomic) UIEdgeInsets textLabelInset;
