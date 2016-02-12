@@ -514,7 +514,6 @@
         height = CGRectGetHeight(ourBounds)/3.;
     }
     else {
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
         CGSize fitSize = [cell sizeThatFits:tableView.bounds.size];
         height = fitSize.height;
@@ -533,11 +532,14 @@
         if (imageURL != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-                if (imageData != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (imageData != nil) {
                         titledImageView.imageView.image = [UIImage imageWithData:imageData];
-                    });
-                }
+                    }
+                    else {
+                        [titledImageView.imageView setImage:[UIImage imageNamed:@"meal_placeholder"]];
+                    }
+                });
             });
         }
         return cell;
