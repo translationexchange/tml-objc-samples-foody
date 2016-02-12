@@ -351,10 +351,10 @@
         }
         NSInteger ai = [aIndex integerValue];
         NSInteger bi = [bIndex integerValue];
-        if (ai > bi) {
+        if (ai < bi) {
             return NSOrderedAscending;
         }
-        else if (ai < bi) {
+        else if (ai > bi) {
             return NSOrderedDescending;
         }
         else {
