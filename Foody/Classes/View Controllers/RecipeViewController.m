@@ -280,6 +280,9 @@
     
     tableView.allowsSelection = NO;
     [tableView reloadData];
+    UIEdgeInsets contentInset = tableView.contentInset;
+    contentInset.bottom = 44;
+    tableView.contentInset = contentInset;
 }
 
 #pragma mark - Recipe
