@@ -45,7 +45,7 @@
     collectionView.collectionViewLayout = layout;
     collectionView.delegate = self;
     
-    self.navigationItem.title = TMLLocalizedString(@"Recipes");
+    self.navigationItem.title = TMLLocalizedStringWithReuseIdenitifer(@"Recipes", @"navigationItem.title");
     
     [collectionView addObserver:self
                      forKeyPath:@"bounds"
@@ -74,6 +74,8 @@
     _refreshControl = refreshControl;
     
     [self setupNotificationObserving];
+    
+    [[TML sharedInstance] registerObjectWithReusableLocalizedStrings:self];
 }
 
 #pragma mark - KVO
@@ -231,6 +233,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
     if ([_refreshControl isRefreshing] == YES) {
         [_refreshControl endRefreshing];
     }
+}
+
+#pragma mark - TML
+- (void)updateReusableTMLStrings {
+    [super updateReusableTMLStrings];
+    [self.collectionView reloadData];
 }
 
 @end
