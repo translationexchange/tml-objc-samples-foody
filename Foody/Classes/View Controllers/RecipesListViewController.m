@@ -75,7 +75,6 @@
     
     [self setupNotificationObserving];
 }
-}
 
 #pragma mark - KVO
 
