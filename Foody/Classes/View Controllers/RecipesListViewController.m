@@ -56,11 +56,11 @@
     fetchRequest.sortDescriptors = @[
                                      [NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:YES]
                                      ];
-    CoreDataLocalStore *localStore = [CoreDataLocalStore threadSafeLocalStore];
+    CoreDataLocalStore *localStore = [[CoreDataLocalStore alloc] init];
     NSFetchedResultsController *fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                       managedObjectContext:[localStore managedObjectContext]
                                                                                         sectionNameKeyPath:nil
-                                                                                                 cacheName:nil];
+                                                                                                 cacheName:NSStringFromClass(self.class)];
     fetchController.delegate = self;
     self.fetchedResultsController = fetchController;
     NSError *error;
@@ -127,6 +127,7 @@
     cell.textLabel.text = recipe.name;
     cell.subtextLabel.text = recipe.recipeDescription;
     [cell setImage:nil];
+    
     CGRect frame = cell.frame;
     cell.frame = frame;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
@@ -211,9 +212,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
         return;
     }
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self
-               selector:@selector(syncDidFinish:)
-                   name:SyncEngineDidFinishEventName
+    [center addObserver:self selector:@selector(mocChanged:)
+                   name:NSManagedObjectContextObjectsDidChangeNotification
                  object:nil];
     _observingNotifications = YES;
 }
@@ -226,7 +226,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
     _observingNotifications = NO;
 }
 
-- (void)syncDidFinish:(NSNotification *)aNotification {
+- (void)mocChanged:(NSNotification *)aNotification {
+    [self.collectionView reloadData];
     if ([_refreshControl isRefreshing] == YES) {
         [_refreshControl endRefreshing];
     }
