@@ -195,6 +195,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UICollectionView *collectionView = self.collectionView;
+    NSArray *visibleCells = [collectionView visibleCells];
+    UICollectionViewCell *targetCell = [collectionView cellForItemAtIndexPath:indexPath];
+    if ([visibleCells containsObject:targetCell] == YES) {
+        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    }
+}
 
 #pragma mark - Notifications
 
