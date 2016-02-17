@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setupNotificationObserving];
     
-    APIClient *apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
+    APIClient *apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://foody-rails.translationexchange.com/api/v1/"]];
     self.apiClient = apiClient;
     
     // Dynamic Splash
