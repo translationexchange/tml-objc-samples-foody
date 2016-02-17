@@ -4,14 +4,14 @@
 # use_frameworks!
 
 target 'Foody' do
-  pod "TMLKit"
+  pod "TMLKit", :git => 'https://github.com/translationexchange/tml-objc'
 end
 
 target 'FoodyTests' do
-  pod "TMLKit"
+  pod "TMLKit", :git => 'https://github.com/translationexchange/tml-objc'
 end
 
 target 'FoodyUITests' do
-  pod "TMLKit"
+  pod "TMLKit", :git => 'https://github.com/translationexchange/tml-objc'
 end
 

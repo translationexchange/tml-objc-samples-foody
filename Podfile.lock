@@ -10,7 +10,16 @@ PODS:
     - SSZipArchive
 
 DEPENDENCIES:
-  - TMLKit
+  - TMLKit (from `https://github.com/translationexchange/tml-objc`)
+
+EXTERNAL SOURCES:
+  TMLKit:
+    :git: https://github.com/translationexchange/tml-objc
+
+CHECKOUT OPTIONS:
+  TMLKit:
+    :commit: a2aadc32eacf858831953e96be0468e528ae4736
+    :git: https://github.com/translationexchange/tml-objc
 
 SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
