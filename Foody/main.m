@@ -16,7 +16,9 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
         TMLConfiguration *config = [[TMLConfiguration alloc] initWithApplicationKey:TML_APPLICATION_KEY
                                                                         accessToken:TML_APPLICATION_ACCESS_TOKEN];
+#if DEBUG
         config.translationEnabled = YES;
+#endif
         [TML sharedInstanceWithConfiguration:config];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
