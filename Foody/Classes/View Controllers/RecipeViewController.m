@@ -258,6 +258,7 @@
  */
 @interface RecipeViewController () {
     NSInteger _recipeID;
+    BOOL _observingNotifications;
 }
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *subtitleLabel;
@@ -266,6 +267,10 @@
 @end
 
 @implementation RecipeViewController
+
+- (void)dealloc {
+    [self teardownNotificationObserving];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -283,6 +288,8 @@
     UIEdgeInsets contentInset = tableView.contentInset;
     contentInset.bottom = 44;
     tableView.contentInset = contentInset;
+    
+    [self setupNotificationObserving];
 }
 
 #pragma mark - Recipe
@@ -585,6 +592,77 @@ willDisplayHeaderView:(UIView *)view
         headerView.textLabel.text = [headerView.textLabel.text uppercaseString];
         headerView.textLabel.textColor = DARKER_GRAY_COLOR;
         headerView.contentView.backgroundColor = LIGHT_GRAY_COLOR;
+    }
+}
+
+#pragma mark - Notifications
+
+- (void)setupNotificationObserving {
+    if (_observingNotifications == YES) {
+        return;
+    }
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(mocDidChange:)
+                   name:NSManagedObjectContextObjectsDidChangeNotification
+                 object:nil];
+    _observingNotifications = YES;
+}
+
+- (void)teardownNotificationObserving {
+    if (_observingNotifications == NO) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _observingNotifications = NO;
+}
+
+- (void)mocDidChange:(NSNotification *)aNotification {
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSSet *updated = [userInfo valueForKey:NSUpdatedObjectsKey];
+    RecipeMO *changedRecipe = nil;
+    for (id obj in updated) {
+        if ([obj isKindOfClass:[RecipeMO class]] == NO) {
+            continue;
+        }
+        RecipeMO *recipe = (RecipeMO *)obj;
+        if (_recipeID == recipe.uidValue) {
+            changedRecipe = recipe;
+            break;
+        }
+    }
+    if (changedRecipe != nil) {
+        [self reload];
+        return;
+    }
+    
+    NSSet *deleted = [userInfo valueForKey:NSDeletedObjectsKey];
+    for (id obj in deleted) {
+        if ([obj isKindOfClass:[RecipeMO class]] == NO) {
+            continue;
+        }
+        RecipeMO *recipe = (RecipeMO *)obj;
+        if (_recipeID == recipe.uidValue) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self dismiss];
+            });
+            break;
+        }
+    }
+}
+
+
+#pragma mark -
+- (void)reload {
+    [self.tableView reloadData];
+}
+
+- (void)dismiss {
+    if (self.presentingViewController != nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
