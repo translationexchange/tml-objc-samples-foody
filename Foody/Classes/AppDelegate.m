@@ -35,41 +35,20 @@
     
     // Dynamic Splash
     NSBundle *mainBundle = [NSBundle mainBundle];
-    NSArray *backgroundPaths = [mainBundle pathsForResourcesOfType:@"jpg" inDirectory:@"Intro Backgrounds"];
     UIWindow *window = self.window;
     
     UIStoryboard *launchScreenStoryBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:mainBundle];
     UIViewController *splashViewController = [launchScreenStoryBoard instantiateInitialViewController];
-    NSArray *subviews = [splashViewController.view subviews];
-    UIImageView *splashImageView = nil;
-    for (UIView *subview in subviews) {
-        if ([subview isKindOfClass:[UIImageView class]] == YES) {
-            CGRect frame = subview.frame;
-            if (CGPointEqualToPoint(CGPointZero, frame.origin) == YES) {
-                splashImageView = (UIImageView *)subview;
-                break;
-            }
-        }
-    }
+    [window setRootViewController:splashViewController];
     
-    UIImage *newImage = nil;
-    if (splashImageView != nil) {
-        NSInteger index = (arc4random() % backgroundPaths.count);
-        NSString *newImagePath = [backgroundPaths objectAtIndex:index];
-        newImage = [UIImage imageWithContentsOfFile:newImagePath];
-    }
-    
-    if (newImage != nil) {
-        splashImageView.image = newImage;
-        splashImageView.hidden = NO;
-        [window setRootViewController:splashViewController];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.66 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
-            UIViewController *appViewController = [mainStoryBoard instantiateInitialViewController];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.66 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
+        UIViewController *appViewController = [mainStoryBoard instantiateInitialViewController];
+        appViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [splashViewController presentViewController:appViewController animated:YES completion:^{
             [window setRootViewController:appViewController];
-        });
-    }
+        }];
+    });
     
     SyncEngine *syncEngine = [[SyncEngine alloc] initWithAPIClient:apiClient];
     self.syncEngine = syncEngine;
