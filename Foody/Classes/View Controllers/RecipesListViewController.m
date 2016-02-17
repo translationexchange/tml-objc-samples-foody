@@ -11,15 +11,24 @@
 #import "RecipeCollectionViewCell.h"
 #import "RecipeViewController.h"
 #import "RecipesListViewController.h"
+#import "AppDelegate.h"
+#import "SyncEngine.h"
 
 #define FETCH_BRACKET 10
 
-@interface RecipesListViewController() <UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
+@interface RecipesListViewController() <UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate> {
+    BOOL _observingNotifications;
+    UIRefreshControl *_refreshControl;
+}
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation RecipesListViewController
+
+- (void)dealloc {
+    [self teardownNotificationObserving];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,6 +67,14 @@
     if([fetchController performFetch:&error] == NO) {
         AppError(@"Error fetching recipes: %@", error);
     }
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+    [collectionView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refreshCollectionView) forControlEvents:UIControlEventValueChanged];
+    [collectionView alwaysBounceVertical];
+    _refreshControl = refreshControl;
+    
+    [self setupNotificationObserving];
+}
 }
 
 #pragma mark - KVO
@@ -68,6 +85,12 @@
                        context:(void *)context
 {
     [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
+#pragma mark - Refreshing
+- (void)refreshCollectionView {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [[delegate syncEngine] sync];
 }
 
 # pragma mark - UICollectionViewDataSource
@@ -172,5 +195,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
+
+#pragma mark - Notifications
+
+- (void)setupNotificationObserving {
+    if (_observingNotifications == YES) {
+        return;
+    }
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(mocChanged:)
+                   name:NSManagedObjectContextObjectsDidChangeNotification
+                 object:nil];
+    _observingNotifications = YES;
+}
+
+- (void)teardownNotificationObserving {
+    if (_observingNotifications == NO) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _observingNotifications = NO;
+}
+
+- (void)mocChanged:(NSNotification *)aNotification {
+    [self.collectionView reloadData];
+    if ([_refreshControl isRefreshing] == YES) {
+        [_refreshControl endRefreshing];
+    }
+}
 
 @end
