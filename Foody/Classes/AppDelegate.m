@@ -11,6 +11,8 @@
 #import "SyncEngine.h"
 #import <CoreData/CoreData.h>
 
+#define USE_LOCAL 0
+
 @interface AppDelegate () {
     BOOL _observingNotifications;
 }
@@ -23,8 +25,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setupNotificationObserving];
-    
+
+#if USE_LOCAL
+        APIClient *apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:5000/api/v1/"]];
+#else
     APIClient *apiClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://foody-rails.translationexchange.com/api/v1/"]];
+#endif
     self.apiClient = apiClient;
     
     // Dynamic Splash
