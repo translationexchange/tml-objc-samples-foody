@@ -73,7 +73,6 @@
     
     SyncEngine *syncEngine = [[SyncEngine alloc] initWithAPIClient:apiClient];
     self.syncEngine = syncEngine;
-    [syncEngine sync];
     
     return YES;
 }
