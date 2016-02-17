@@ -126,6 +126,8 @@
 
     cell.textLabel.text = recipe.name;
     cell.subtextLabel.text = recipe.recipeDescription;
+    [cell setImage:nil];
+    
     CGRect frame = cell.frame;
     cell.frame = frame;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
