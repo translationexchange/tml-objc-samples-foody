@@ -279,7 +279,6 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
         NSError *error = nil;
         if ([localStore hasChanges] == YES) {
             [localStore save:&error];
-            [localStore.managedObjectContext processPendingChanges];
         }
         if (error != nil) {
             AppError(@"Error importing API categories: %@", error);
