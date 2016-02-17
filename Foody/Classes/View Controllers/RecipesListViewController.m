@@ -56,7 +56,7 @@
     fetchRequest.sortDescriptors = @[
                                      [NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:YES]
                                      ];
-    CoreDataLocalStore *localStore = [[CoreDataLocalStore alloc] init];
+    CoreDataLocalStore *localStore = [CoreDataLocalStore threadSafeLocalStore];
     NSFetchedResultsController *fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                       managedObjectContext:[localStore managedObjectContext]
                                                                                         sectionNameKeyPath:nil
