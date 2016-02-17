@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const SyncEngineDidFinishEventName;
+extern NSString * const SyncEngineDidStartEventName;
+
 @class APIClient;
 
 @interface SyncEngine : NSObject

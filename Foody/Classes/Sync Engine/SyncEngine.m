@@ -14,9 +14,13 @@
 #import "RecipeIngredient.h"
 #import "CoreDataLocalStore.h"
 #import "APISerializer.h"
+#import "NSObject+JSON.h"
 
 NSString * const CategoriesKey = @"Categories";
 NSString * const RecipesKey = @"Recipes";
+
+NSString * const SyncEngineDidFinishEventName = @"SyncEngineDidFinishEventName";
+NSString * const SyncEngineDidStartEventName = @"SyncEngineDidStartEventName";
 
 #define IsSuccessfullyFinishedResponse(apiResponse)\
 ([apiResponse isSuccessfulResponse] == YES && (apiResponse.isPaginated == NO || apiResponse.currentPage == apiResponse.totalPages))
@@ -75,6 +79,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
 
 - (void)signalSyncEvent:(SyncEngineEvent)event userInfo:(NSDictionary *)userInfo {
     if (event == SyncEngineStartEvent) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SyncEngineDidStartEventName object:nil];
         [self fetchCategories:nil completion:^(APIResponse *apiResponse, NSArray *result, NSError *error) {
             if (IsSuccessfullyFinishedResponse(apiResponse) == YES) {
                 [self signalSyncEvent:SyncEngineProgressEvent
@@ -99,6 +104,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
     }
     else if (event == SyncEngineEndEvent) {
         [self expungeObsoleteObjects];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SyncEngineDidFinishEventName object:nil];
     }
 }
 
@@ -255,8 +261,15 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
             if (existingRecipe == nil) {
                 existingRecipe = [localStore createRecipe];
             }
-            NSData *data = [APISerializer serializeObject:apiRecipe];
-            [existingRecipe decodeWithCoder:[[APISerializer alloc] initForReadingWithData:data]];
+            
+            NSData *apiData = [APISerializer serializeObject:apiRecipe];
+            NSDictionary *apiInfo = [apiData JSONObject];
+            NSDictionary *existingInfo = [[APISerializer serializeObject:existingRecipe] JSONObject];
+            if ([apiInfo isEqualToDictionary:existingInfo] == YES) {
+                continue;
+            }
+            
+            [existingRecipe decodeWithCoder:[[APISerializer alloc] initForReadingWithData:apiData]];
             
             if (category.uidValue == apiRecipe.categoryID) {
                 [category.recipesSet addObject:existingRecipe];
@@ -266,6 +279,7 @@ NSString * const SyncEngineProgressIdentifierKey = @"progressIdentifier";
         NSError *error = nil;
         if ([localStore hasChanges] == YES) {
             [localStore save:&error];
+            [localStore.managedObjectContext processPendingChanges];
         }
         if (error != nil) {
             AppError(@"Error importing API categories: %@", error);

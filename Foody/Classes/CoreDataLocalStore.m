@@ -21,7 +21,12 @@
 @implementation CoreDataLocalStore
 
 + (instancetype)threadSafeLocalStore {
-    return [[[self alloc] init] threadSafeLocalStore];
+    static CoreDataLocalStore *localStore;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        localStore = [[[self alloc] init] threadSafeLocalStore];
+    });
+    return localStore;
 }
 
 - (CoreDataLocalStore *)threadSafeLocalStore {
