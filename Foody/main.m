@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+#define TML_APPLICATION_KEY @""
+#define TML_APPLICATION_ACCESS_TOKEN @""
+
 int main(int argc, char * argv[]) {
     @autoreleasepool {
+        TMLConfiguration *config = [[TMLConfiguration alloc] initWithApplicationKey:TML_APPLICATION_KEY
+                                                                        accessToken:TML_APPLICATION_ACCESS_TOKEN];
+        config.translationEnabled = YES;
+        [TML sharedInstanceWithConfiguration:config];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

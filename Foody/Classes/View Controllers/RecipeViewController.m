@@ -493,10 +493,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return NSLocalizedString(@"Ingredients", nil);
+        return TMLLocalizedString(@"Ingredients");
     }
     else if (section == 2) {
-        return NSLocalizedString(@"Preparation", nil);
+        return TMLLocalizedString(@"Preparation");
     }
     return nil;
 }
@@ -536,8 +536,8 @@
     if (indexPath.section == 0) {
         RecipeImageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecipeImageCell class])];
         RecipeTitledImageView *titledImageView = cell.titledImageView;
-        titledImageView.titleLabel.text = recipe.name;
-        titledImageView.subtitleLabel.text = recipe.recipeDescription;
+        titledImageView.titleLabel.text = TMLLocalizedString(recipe.name);
+        titledImageView.subtitleLabel.text = TMLLocalizedString(recipe.recipeDescription);
         NSURL *imageURL = [NSURL URLWithString:recipe.imagePath];
         if (imageURL != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -560,7 +560,7 @@
         RecipeIngredientCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecipeIngredientCell class])];
         NSMutableArray *strings = [NSMutableArray array];
         if (ingredient.quantity.length > 0) {
-            [strings addObject:ingredient.quantity];
+            [strings addObject:@"{quantity}"];
         }
         if (ingredient.measurement.length > 0) {
             [strings addObject:ingredient.measurement];
@@ -568,14 +568,14 @@
         if (ingredient.name.length > 0) {
             [strings addObject:ingredient.name];
         }
-        cell.textLabel.text = [strings componentsJoinedByString:@" "];
+        cell.textLabel.text = TMLLocalizedString([strings componentsJoinedByString:@" "], @{@"quantity": ingredient.quantity});
         return cell;
     }
     else if (indexPath.section == 2) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"index = %li", indexPath.row];
         RecipeDirectionMO *direction = [[[recipe directions] filteredOrderedSetUsingPredicate:predicate] firstObject];
         RecipeDirectionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecipeDirectionCell class])];
-        cell.textLabel.text = direction.directionDescription;
+        cell.textLabel.text = TMLLocalizedString(direction.directionDescription);
         cell.bulletView.textLabel.text = [NSString stringWithFormat:@"%i", direction.indexValue + 1];
         return cell;
     }
@@ -589,7 +589,7 @@ willDisplayHeaderView:(UIView *)view
     if (section > 0) {
         UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
         headerView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:12.];
-        headerView.textLabel.text = [headerView.textLabel.text uppercaseString];
+        headerView.textLabel.text = TMLLocalizedString([headerView.textLabel.text uppercaseString]);
         headerView.textLabel.textColor = DARKER_GRAY_COLOR;
         headerView.contentView.backgroundColor = LIGHT_GRAY_COLOR;
     }

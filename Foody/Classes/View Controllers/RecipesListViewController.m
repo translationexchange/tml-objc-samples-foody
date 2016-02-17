@@ -45,7 +45,7 @@
     collectionView.collectionViewLayout = layout;
     collectionView.delegate = self;
     
-    self.navigationItem.title = NSLocalizedString(@"Recipes", nil);
+    self.navigationItem.title = TMLLocalizedString(@"Recipes");
     
     [collectionView addObserver:self
                      forKeyPath:@"bounds"
@@ -124,8 +124,8 @@
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecipeCollectionViewCell class]) forIndexPath:indexPath];
     }
 
-    cell.textLabel.text = recipe.name;
-    cell.subtextLabel.text = recipe.recipeDescription;
+    cell.textLabel.text = TMLLocalizedString(recipe.name);
+    cell.subtextLabel.text = TMLLocalizedString(recipe.recipeDescription);
     [cell setImage:nil];
     
     CGRect frame = cell.frame;

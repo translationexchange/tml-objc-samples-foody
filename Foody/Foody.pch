@@ -13,5 +13,6 @@
 #import <UIKit/UIKit.h>
 #import "Logger.h"
 #import "FoodyGlobals.h"
+#import <TMLKit/TMLKit.h>
 
 #endif /* Foody_pch */
