@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071F6C1984BB45F0AA93ACCF /* libPods-FoodyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D1A5049F4BA98288F5B640 /* libPods-FoodyTests.a */; };
-		2FFE587D48700DD80F0B3508 /* libPods-Foody.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A04C5AEA344134457647D2 /* libPods-Foody.a */; };
+		041501444A604EA83ADC33B8 /* Pods_FoodyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5715C60DEBA6F2D9FB7278 /* Pods_FoodyTests.framework */; };
+		84D5669036282BBBBB2D7F97 /* Pods_FoodyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3F6B3F924E0015CC36EB59 /* Pods_FoodyUITests.framework */; };
+		8A58801B699522D8316958EC /* Pods_Foody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192ADB053F0070863A645588 /* Pods_Foody.framework */; };
 		C09743601BCDA2C90068E216 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C097435F1BCDA2C90068E216 /* main.m */; };
 		C09743691BCDA2C90068E216 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C09743671BCDA2C90068E216 /* Main.storyboard */; };
 		C097436B1BCDA2C90068E216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C097436A1BCDA2C90068E216 /* Assets.xcassets */; };
@@ -57,7 +58,6 @@
 		C4FA32241C52B19F001902EB /* RecipesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA321B1C52B19F001902EB /* RecipesTableViewController.m */; };
 		C4FA32291C52B1AB001902EB /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C4FA32271C52B1AB001902EB /* placeholder.png */; };
 		C4FA322D1C52B426001902EB /* RecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */; };
-		F3AB932583604E2EBC3A482A /* libPods-FoodyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F0572A4EE3666765AF242C /* libPods-FoodyUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,13 +95,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		03D1A5049F4BA98288F5B640 /* libPods-FoodyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoodyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0915A9CB7D05DFF9E6E9F779 /* Pods-FoodyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodyTests/Pods-FoodyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		15F0572A4EE3666765AF242C /* libPods-FoodyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoodyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		192ADB053F0070863A645588 /* Pods_Foody.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foody.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9C2438946FB21F361E301C /* Pods-FoodyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodyTests/Pods-FoodyTests.release.xcconfig"; sourceTree = "<group>"; };
 		621D71E0B01540C7BC680BE8 /* Pods-FoodyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodyUITests/Pods-FoodyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74B49979136C5D21C9BCB8C3 /* Pods-FoodyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodyUITests/Pods-FoodyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7D123D6647698EE32F92B135 /* Pods-Foody.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foody.release.xcconfig"; path = "Pods/Target Support Files/Pods-Foody/Pods-Foody.release.xcconfig"; sourceTree = "<group>"; };
+		BD3F6B3F924E0015CC36EB59 /* Pods_FoodyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C097435B1BCDA2C90068E216 /* Foody.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foody.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C097435F1BCDA2C90068E216 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C09743681BCDA2C90068E216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +116,8 @@
 		C09743851BCDA2C90068E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C40674671C69595500D2C271 /* FeaturedRecipeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedRecipeCollectionViewCell.h; sourceTree = "<group>"; };
 		C40674681C69595500D2C271 /* FeaturedRecipeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedRecipeCollectionViewCell.m; sourceTree = "<group>"; };
+		C410DCBB1CC87CE600034E2B /* TMLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMLKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/Foody-bommxejckosbwbbzslxovwxjksbc/Build/Products/Debug-iphonesimulator/TMLKit.framework"; sourceTree = "<group>"; };
+		C410DCBD1CC87CF000034E2B /* Pods_Foody.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Foody.framework; path = "../../../Library/Developer/Xcode/DerivedData/Foody-bommxejckosbwbbzslxovwxjksbc/Build/Products/Debug-iphonesimulator/Pods_Foody.framework"; sourceTree = "<group>"; };
 		C4270D3C1C6D651700F91674 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		C4270D3D1C6D66F800F91674 /* APIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIResponse.h; sourceTree = "<group>"; };
 		C4270D3E1C6D66F800F91674 /* APIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIResponse.m; sourceTree = "<group>"; };
@@ -194,7 +196,7 @@
 		C4FA322C1C52B426001902EB /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
 		C4FA322F1C530764001902EB /* Foody.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foody.pch; sourceTree = "<group>"; };
 		C4FA32301C530C94001902EB /* libTMLKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTMLKit.a; path = "Pods/../build/Debug-iphoneos/libTMLKit.a"; sourceTree = "<group>"; };
-		E4A04C5AEA344134457647D2 /* libPods-Foody.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Foody.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5715C60DEBA6F2D9FB7278 /* Pods_FoodyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A750E23CD5BD8937262C7F /* Pods-Foody.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foody.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Foody/Pods-Foody.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FFE587D48700DD80F0B3508 /* libPods-Foody.a in Frameworks */,
+				8A58801B699522D8316958EC /* Pods_Foody.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				071F6C1984BB45F0AA93ACCF /* libPods-FoodyTests.a in Frameworks */,
+				041501444A604EA83ADC33B8 /* Pods_FoodyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3AB932583604E2EBC3A482A /* libPods-FoodyUITests.a in Frameworks */,
+				84D5669036282BBBBB2D7F97 /* Pods_FoodyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,10 +231,12 @@
 		239DF09B3B3B9E71EE7632D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C410DCBD1CC87CF000034E2B /* Pods_Foody.framework */,
+				C410DCBB1CC87CE600034E2B /* TMLKit.framework */,
 				C4FA32301C530C94001902EB /* libTMLKit.a */,
-				E4A04C5AEA344134457647D2 /* libPods-Foody.a */,
-				03D1A5049F4BA98288F5B640 /* libPods-FoodyTests.a */,
-				15F0572A4EE3666765AF242C /* libPods-FoodyUITests.a */,
+				192ADB053F0070863A645588 /* Pods_Foody.framework */,
+				CA5715C60DEBA6F2D9FB7278 /* Pods_FoodyTests.framework */,
+				BD3F6B3F924E0015CC36EB59 /* Pods_FoodyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -912,6 +916,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Foody/Foody.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -927,6 +932,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Foody/Foody.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Foody/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
