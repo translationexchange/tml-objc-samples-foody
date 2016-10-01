@@ -258,7 +258,7 @@
     if ([request isKindOfClass:[NSFetchRequest class]] == YES) {
         NSArray *results = [self executeFetchRequest:(NSFetchRequest *)request];
         for (NSManagedObject *mo in results) {
-            [_managedObjectContext delete:mo];
+            [_managedObjectContext deleteObject:mo];
         }
     }
     else {
