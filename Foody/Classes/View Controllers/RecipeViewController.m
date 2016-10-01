@@ -392,7 +392,7 @@
 }
 
 - (void)fetchDirections {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     APIClient *apiClient = appDelegate.apiClient;
     [apiClient directionsForRecipeWithID:_recipeID parameters:nil completion:^(APIResponse *apiResponse, NSArray *directions, NSError *error) {
         if ([apiResponse isSuccessfulResponse] == YES) {
@@ -419,7 +419,7 @@
 }
 
 - (void)fetchIngredients {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     APIClient *apiClient = appDelegate.apiClient;
     [apiClient ingredientsForRecipeWithID:_recipeID parameters:nil completion:^(APIResponse *apiResponse, NSArray *directions, NSError *error) {
         if ([apiResponse isSuccessfulResponse] == YES) {

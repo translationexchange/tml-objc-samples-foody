@@ -90,7 +90,7 @@
 
 #pragma mark - Refreshing
 - (void)refreshCollectionView {
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [[delegate syncEngine] sync];
 }
 
